@@ -1,0 +1,138 @@
+import pygame
+import sys
+
+class Personagem:
+    def __init__(self, x, y, velocidade, escala):
+        self.x = y - 200
+        self.y = y + 80
+        self.velocidade = velocidade
+        self.direcao = 'frente'
+        self.passo = 0
+        self.contador_passos = 0
+        self.escala = escala
+        self.movimento = False
+
+        # Carregar imagens do personagem
+        self.imagens = {
+            'esquerda': [pygame.transform.scale(pygame.image.load('img_2.png'), (
+                pygame.image.load('img_2.png').get_width() * escala, pygame.image.load('img_2.png').get_height() * escala)),
+                         pygame.transform.scale(pygame.image.load('img_2.png'), (
+                             pygame.image.load('img_2.png').get_width() * escala,
+                             pygame.image.load('img_2.png').get_height() * escala))],
+            'direita': [pygame.transform.scale(pygame.image.load('direita 1.png'), (
+                pygame.image.load('direita 1.png').get_width() * escala, pygame.image.load('direita 1.png').get_height() * escala)),
+                        pygame.transform.scale(pygame.image.load('sergio-direita-sem2.png'), (
+                            pygame.image.load('sergio-direita-sem2.png').get_width() * escala,
+                            pygame.image.load('sergio-direita-sem2.png').get_height() * escala))]
+        }
+
+        # Imagens paradas
+        self.imagens_parado = {
+            'frente': pygame.transform.scale(pygame.image.load('sergio-frente-com0.png'), (
+                pygame.image.load('sergio-frente-com0.png').get_width() * escala, pygame.image.load('sergio-frente-com0.png').get_height() * escala)),
+            'esquerda': pygame.transform.scale(pygame.image.load('sergio-esqueda-sem0.png'), (
+                pygame.image.load('sergio-esqueda-sem0.png').get_width() * escala, pygame.image.load('sergio-esqueda-sem0.png').get_height() * escala)),
+            'direita': pygame.transform.scale(pygame.image.load('sergio-direita-com0.png'), (
+                pygame.image.load('sergio-direita-com0.png').get_width() * escala,
+                pygame.image.load('sergio-direita-com0.png').get_height() * escala))
+        }
+
+        # Definir o retângulo do personagem
+        self.rect = pygame.Rect(self.x, self.y, self.imagens['direita'][0].get_width(), self.imagens['direita'][0].get_height())
+
+    def mover(self, teclas):
+        self.movimento = False
+        if teclas[pygame.K_a]:
+            self.x -= self.velocidade
+            self.direcao = 'esquerda'
+            self.movimento = True
+        elif teclas[pygame.K_d]:
+            self.x += self.velocidade
+            self.direcao = 'direita'
+            self.movimento = True
+
+        # Alternar entre as imagens de passo
+        if self.movimento:
+            self.contador_passos += 1
+            if self.contador_passos >= 10:
+                self.passo = (self.passo + 1) % 2
+                self.contador_passos = 0
+
+        # Atualizar o retângulo do personagem
+        self.rect.topleft = (self.x, self.y)
+
+    def desenhar(self, tela):
+        if self.movimento:
+            tela.blit(self.imagens[self.direcao][self.passo], (self.x, self.y))
+        else:
+            tela.blit(self.imagens_parado[self.direcao], (self.x, self.y))
+
+
+class Jogo:
+    def __init__(self):
+        pygame.init()
+        self.largura_janela = 1280
+        self.altura_janela = 720
+        self.tela = pygame.display.set_mode((self.largura_janela, self.altura_janela))
+        pygame.display.set_caption("Movimento do Personagem")
+
+        # Carregar a imagem de fundo
+        self.fundo = pygame.image.load('puzzle1-cena-coleta.png')
+        self.fundo = pygame.transform.scale(self.fundo, (self.largura_janela, self.altura_janela))
+
+        # Carregar a imagem estática
+        self.imagem_estatica = pygame.image.load('img_10.png')  # Substitua pelo caminho da sua imagem
+        self.imagem_estatica = pygame.transform.scale(self.imagem_estatica, (100, 100))  # Ajuste o tamanho conforme necessário
+
+        # Definir a posição da imagem estática e seu retângulo de colisão
+        self.imagem_estatica_x = 1100
+        self.imagem_estatica_y = 550
+        self.rect_imagem_estatica = pygame.Rect(self.imagem_estatica_x, self.imagem_estatica_y, self.imagem_estatica.get_width(), self.imagem_estatica.get_height())
+
+        # Carregar o som de conquista
+        pygame.mixer.init()
+        self.som_conquista = pygame.mixer.Sound('conquista.wav')
+
+        # Inicializar o personagem
+        self.personagem = Personagem(self.largura_janela // 2, self.altura_janela // 2, 10, 10)
+
+        self.coletado = False
+
+    def loop(self):
+        rodando = True
+        while rodando:
+            for evento in pygame.event.get():
+                if evento.type == pygame.QUIT:
+                    rodando = False
+
+            teclas = pygame.key.get_pressed()
+
+            self.personagem.mover(teclas)
+
+            # Verificar colisão entre o personagem e a imagem estática
+            if not self.coletado and self.personagem.rect.colliderect(self.rect_imagem_estatica):
+                self.som_conquista.play()  # Tocar som de conquista
+                self.coletado = True  # Marcar como coletado
+
+            # Desenhar o fundo
+            self.tela.blit(self.fundo, (0, 0))
+
+            # Desenhar a imagem estática se ela não tiver sido coletada
+            if not self.coletado:
+                self.tela.blit(self.imagem_estatica, (self.imagem_estatica_x, self.imagem_estatica_y))
+
+            # Desenhar o personagem
+            self.personagem.desenhar(self.tela)
+
+            # Atualizar a tela
+            pygame.display.flip()
+
+            # Controlar a taxa de atualização
+            pygame.time.Clock().tick(50)
+
+        pygame.quit()
+        sys.exit()
+
+
+jogo = Jogo()
+jogo.loop()
