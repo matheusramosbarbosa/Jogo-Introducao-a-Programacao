@@ -88,8 +88,8 @@ class Personagem:
 class Jogo:
     def __init__(self):
         pygame.init()
-        self.largura_janela = 1400
-        self.altura_janela = 1000
+        self.largura_janela = 1280    
+        self.altura_janela = 720
         self.tela = pygame.display.set_mode((self.largura_janela, self.altura_janela))
         pygame.display.set_caption("Movimento do Personagem")
 
