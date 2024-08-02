@@ -94,8 +94,6 @@ class Puzzle_2:
         self.personagem = Personagem(590,190, 120)
         self.armario = Movel(470, 310, pygame.image.load('graphics/armario_hospital.png') ,120)
 
-        self.som_acerto = pygame.mixer.Sound('sounds/acerto_sound_effect.mp3')
-
     def loop(self):
         while True:
             for evento in pygame.event.get():
@@ -118,9 +116,6 @@ class Puzzle_2:
             self.personagem.desenhar_personagem(self.tela)
             self.armario.desenhar_movel(self.tela)
 
-            pygame.draw.rect(self.tela, (50,50,50), self.paredes[0].rect)
-            if self.armario.rect.collidelist(self.objetivos) != -1:
-                self.som_acerto.play()
 
             if self.personagem.rect.colliderect(self.armario.rect):
                 if self.personagem.move_esquerda:
