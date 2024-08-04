@@ -1,6 +1,7 @@
 import pygame
 from sys import exit
 
+
 #Cria a classe Movel, que contem todos os atributos e comportamentos de um movel
 class Movel():
     def __init__(self, x, y, surf, casa):
@@ -42,7 +43,7 @@ class Personagem:
         self.y = y
         self.casa = casa
 
-        self.surf = pygame.image.load('graphics/personagem_principal.png')
+        self.surf = pygame.image.load('graphics/prota-frente-0.png')
         self.rect = pygame.Rect(self.x, self.y, 100, 100)
 
         #É necessario essas flags pra diferenciar as colisão entre Personagem e Movel
@@ -52,15 +53,19 @@ class Personagem:
         if direcao == 'direita':
             self.rect.x += self.casa
             self.move_direita = True
+            self.surf = pygame.image.load('graphics/prota-direita-0.png')
         if direcao == 'esquerda':
             self.rect.x -= self.casa
             self.move_esquerda = True
+            self.surf = pygame.image.load('graphics/prota-esquerda-0.png')
         if direcao == 'baixo':
             self.rect.y += self.casa
             self.move_baixo = True
+            self.surf = pygame.image.load('graphics/prota-frente-0.png')
         if direcao == 'cima':
             self.rect.y -= self.casa
             self.move_cima = True
+            self.surf = pygame.image.load('graphics/prota-costas-0.png')
 
     def reset_movimento(self):
         self.move_direita = self.move_esquerda = self.move_cima = self.move_baixo = False
@@ -106,7 +111,13 @@ class Fase_1:
         self.armario_2 = Movel(710, 310, pygame.image.load('graphics/armario_hospital.png'), 120)
         self.moveis = [self.armario_1, self.armario_2]
 
+        self.fase_1 = True
+        self.fase_2 = False
+        self.fase_3 = False
+
+
         self.som_acerto = pygame.mixer.Sound('sounds/acerto_sound_effect.mp3')
+        self.nao_tocou = True
     #Quando o personagem ou um objeto colidir com o retangulo da parede, faz com que ele retorne um passso, gerando o efeito de que ele nao pode passar dali
     def colisao_paredes(self):
         #Personagem/Parede:
@@ -132,13 +143,13 @@ class Fase_1:
             
             if movel.rect.colliderect(self.personagem.rect):
                 if self.personagem.move_esquerda:
-                    self.personagem.movimento('direita')
+                    self.personagem.rect.x += 120
                 if self.personagem.move_direita:
-                    self.personagem.movimento('esquerda')
+                    self.personagem.rect.x -= 120
                 if self.personagem.move_cima:
-                    self.personagem.movimento('baixo')
+                    self.personagem.rect.y += 120
                 if self.personagem.move_baixo:
-                    self.personagem.movimento('cima')
+                    self.personagem.rect.y -= 120
 
     #Colisão Personagem/Movel, fazendo com que o movel se mova na mesma direção que o personagem está indo
     def colisao_moveis(self):
@@ -170,19 +181,27 @@ class Fase_1:
                     if evento.key == pygame.K_w:
                         self.personagem.movimento('cima')
 
-            self.tela.fill((18,18,18))
-            self.tela.blit(self.mapa, (210,170))
-        
-            self.colisao_moveis()
-            self.colisao_paredes()  
-
-            self.personagem.desenhar_personagem(self.tela)
-            self.armario_1.desenhar_movel(self.tela)
-            self.armario_2.desenhar_movel(self.tela)
+            if self.fase_1:
+                self.tela.fill((18,18,18))
+                self.tela.blit(self.mapa, (210,170))
             
-            self.personagem.reset_movimento()
-            for movel in self.moveis:
-                movel.reset_movimento()
+                self.colisao_moveis()
+                self.colisao_paredes()  
+
+                self.personagem.desenhar_personagem(self.tela)
+                self.armario_1.desenhar_movel(self.tela)
+                self.armario_2.desenhar_movel(self.tela)
+                
+                self.personagem.reset_movimento()
+                for movel in self.moveis:
+                    movel.reset_movimento()
+
+                if self.moveis[0].rect.colliderect(self.objetivos[0]) and self.moveis[1].rect.colliderect(self.objetivos[1]):
+                    if self.nao_tocou:
+                        self.som_acerto.play()
+                        self.nao_tocou = False
+                    
+                
 
             pygame.display.flip()
             self.clock.tick(60)
