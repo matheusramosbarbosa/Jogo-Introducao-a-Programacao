@@ -186,9 +186,11 @@ class Fase_1:
                            Movel(405,245, pygame.image.load('graphics/armario_hospital.png'), 60,1),
                            Movel(825,185, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
 
-            self.paredes_cima = [Parede(405,105, 470,20), Parede(345,225,50,20)]
-            self.paredes_baixo = []
-            self.paredes_esquerda = []
+            self.paredes_cima = [Parede(405,105, 470,20), Parede(345,225,50,20), Parede(465,345, 170,20),
+                                 Parede(705,345, 110,20), Parede(885,465, 50,20), Parede(585,525, 230,20)]
+            self.paredes_baixo = [Parede(465,175, 170,20), Parede(705,175, 110,20), Parede(345,415, 50,20),
+                                  Parede(465,415, 350,20), Parede(405,535, 50,20), Parede(585,595, 350,20)]
+            self.paredes_esquerda = [Parede(385,125, 20,110)]
             self.paredes_direita = []   
 
 
@@ -248,6 +250,7 @@ class Fase_1:
 
                 pygame.draw.rect(self.tela, (32,255, 20), self.personagem.rect)
                 pygame.draw.rect(self.tela, (32,255, 20), self.moveis[2])
+                pygame.draw.rect(self.tela, (255,255, 32), self.paredes_esquerda[0])
                 self.personagem.desenhar_personagem(self.tela)
                 for movel in self.moveis:
                     movel.desenhar_movel(self.tela)
