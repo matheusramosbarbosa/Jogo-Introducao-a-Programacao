@@ -4,13 +4,12 @@ from sys import exit
 
 #Cria a classe Movel, que contem todos os atributos e comportamentos de um movel
 class Movel():
-    def __init__(self, x, y, surf, casa):
+    def __init__(self, x, y, surf, casa, escala):
         #Posição (x,y) e o tamanho da casa (quantidade de pixels) que ele anda
         self.x = x
         self.y = y
         self.casa = casa
-
-        self.surface = pygame.transform.scale(surf, (surf.get_width() * 2, surf.get_height() * 2))
+        self.surface = pygame.transform.scale(surf, (surf.get_width() * escala, surf.get_height() * escala))
         self.rect = pygame.Rect(self.x, self.y, self.surface.get_width(), self.surface.get_height() )
 
         #É necessario essas flags pra diferenciar as colisão entre Personagem e Movel
@@ -36,15 +35,22 @@ class Movel():
     def desenhar_movel(self, tela):
         tela.blit(self.surface, self.rect)
 
+    
+
 #Personagem
 class Personagem:
-    def __init__(self, x, y, casa):
+    def __init__(self, x, y, casa, escala):
         self.x = x
         self.y = y
         self.casa = casa
 
-        self.surf = pygame.image.load('graphics/prota-frente-0.png')
-        self.rect = pygame.Rect(self.x, self.y, 100, 100)
+        self.imagens = {'frente' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-0.png'), (pygame.image.load('graphics/prota-frente-0.png').get_width() * escala, pygame.image.load('graphics/prota-frente-0.png').get_height() * escala)),
+                        'costas' : pygame.transform.scale(pygame.image.load('graphics/prota-costas-0.png'), (pygame.image.load('graphics/prota-costas-0.png').get_width() * escala, pygame.image.load('graphics/prota-costas-0.png').get_height() * escala)),
+                        'direita' : pygame.transform.scale(pygame.image.load('graphics/prota-direita-0.png'), (pygame.image.load('graphics/prota-direita-0.png').get_width() * escala, pygame.image.load('graphics/prota-direita-0.png').get_height() * escala)),
+                        'esquerda': pygame.transform.scale(pygame.image.load('graphics/prota-esquerda-0.png'), (pygame.image.load('graphics/prota-esquerda-0.png').get_width() * escala, pygame.image.load('graphics/prota-esquerda-0.png').get_height() * escala))}
+       
+        self.surf = self.imagens['frente']    
+        self.rect = pygame.Rect(self.x, self.y, self.surf.get_width(), self.surf.get_height())
 
         #É necessario essas flags pra diferenciar as colisão entre Personagem e Movel
         self.move_direita = self.move_esquerda = self.move_cima = self.move_baixo = False
@@ -53,19 +59,19 @@ class Personagem:
         if direcao == 'direita':
             self.rect.x += self.casa
             self.move_direita = True
-            self.surf = pygame.image.load('graphics/prota-direita-0.png')
+            self.surf = self.imagens['direita']
         if direcao == 'esquerda':
             self.rect.x -= self.casa
             self.move_esquerda = True
-            self.surf = pygame.image.load('graphics/prota-esquerda-0.png')
+            self.surf = self.imagens['esquerda']
         if direcao == 'baixo':
             self.rect.y += self.casa
             self.move_baixo = True
-            self.surf = pygame.image.load('graphics/prota-frente-0.png')
+            self.surf = self.imagens['frente']
         if direcao == 'cima':
             self.rect.y -= self.casa
             self.move_cima = True
-            self.surf = pygame.image.load('graphics/prota-costas-0.png')
+            self.surf = self.imagens['costas']
 
     def reset_movimento(self):
         self.move_direita = self.move_esquerda = self.move_cima = self.move_baixo = False
@@ -94,6 +100,11 @@ class Fase_1:
         self.altura_janela = 720
         self.tela = pygame.display.set_mode((self.largura_janela, self.altura_janela))
         self.clock = pygame.time.Clock()
+        
+        self.fonte_text = pygame.font.Font('Pixeltype.ttf', 100)
+        self.text_surf = self.fonte_text.render('R = Reiniciar', False, 'White')
+
+        self.fase = 1
 
         self.mapa = pygame.image.load('graphics/fase_1.png')
         #Criação das dos retangulso das paredes, pra poder haver colisão
@@ -106,15 +117,9 @@ class Fase_1:
         self.objetivos = [Objetivo(230,310, 100,100), Objetivo(950,310, 100,100)]
 
         #Criação do personagem e dos moveis
-        self.personagem = Personagem(590,190, 120)
-        self.armario_1 = Movel(470, 310, pygame.image.load('graphics/armario_hospital.png') ,120)
-        self.armario_2 = Movel(710, 310, pygame.image.load('graphics/armario_hospital.png'), 120)
-        self.moveis = [self.armario_1, self.armario_2]
-
-        self.fase_1 = True
-        self.fase_2 = False
-        self.fase_3 = False
-
+        self.personagem = Personagem(590,190, 120, 1)
+        self.moveis = [Movel(470, 310, pygame.image.load('graphics/armario_hospital.png') ,120, 2),
+                        Movel(710, 310, pygame.image.load('graphics/armario_hospital.png'), 120, 2)]
 
         self.som_acerto = pygame.mixer.Sound('sounds/acerto_sound_effect.mp3')
         self.nao_tocou = True
@@ -140,16 +145,20 @@ class Fase_1:
                 movel.rect.y += movel.casa
             if movel.rect.collidelist(self.paredes_baixo)!= -1 and movel.move_baixo:
                 movel.rect.y -= movel.casa
-            
+
             if movel.rect.colliderect(self.personagem.rect):
                 if self.personagem.move_esquerda:
-                    self.personagem.rect.x += 120
+                    self.personagem.rect.x += self.personagem.casa
                 if self.personagem.move_direita:
-                    self.personagem.rect.x -= 120
+                    self.personagem.rect.x -= self.personagem.casa
                 if self.personagem.move_cima:
-                    self.personagem.rect.y += 120
+                    self.personagem.rect.y += self.personagem.casa
                 if self.personagem.move_baixo:
-                    self.personagem.rect.y -= 120
+                    self.personagem.rect.y -= self.personagem.casa
+            
+       
+            
+                    
 
     #Colisão Personagem/Movel, fazendo com que o movel se mova na mesma direção que o personagem está indo
     def colisao_moveis(self):
@@ -163,6 +172,25 @@ class Fase_1:
                     movel.movimento_movel('cima')
                 if self.personagem.move_baixo:
                     movel.movimento_movel('baixo')
+                
+            
+
+
+
+    def mudar_fase(self, fase):
+        if fase == 2:
+            self.mapa = pygame.image.load('graphics/fase_2.png')
+            self.fase = 2
+            self.personagem = Personagem(525,365, 60, 0.5)
+            self.moveis = [Movel(585,365, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
+                           Movel(405,245, pygame.image.load('graphics/armario_hospital.png'), 60,1),
+                           Movel(825,185, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
+
+            self.paredes_cima = [Parede(405,105, 470,20), Parede(345,225,50,20)]
+            self.paredes_baixo = []
+            self.paredes_esquerda = []
+            self.paredes_direita = []   
+
 
 
     def loop(self):
@@ -180,29 +208,53 @@ class Fase_1:
                         self.personagem.movimento('baixo')
                     if evento.key == pygame.K_w:
                         self.personagem.movimento('cima')
-
-            if self.fase_1:
+                    
+            keys = pygame.key.get_pressed()
+            
+       
+            if self.fase == 1:
                 self.tela.fill((18,18,18))
                 self.tela.blit(self.mapa, (210,170))
-            
+                
+                if keys[pygame.K_r]:
+                    self.personagem = Personagem(590,190, 120, 1)
+                    self.moveis = [Movel(470, 310, pygame.image.load('graphics/armario_hospital.png') ,120, 2),
+                                   Movel(710, 310, pygame.image.load('graphics/armario_hospital.png'), 120, 2)]
+
+
                 self.colisao_moveis()
                 self.colisao_paredes()  
 
                 self.personagem.desenhar_personagem(self.tela)
-                self.armario_1.desenhar_movel(self.tela)
-                self.armario_2.desenhar_movel(self.tela)
-                
-                self.personagem.reset_movimento()
                 for movel in self.moveis:
+                    movel.desenhar_movel(self.tela)
                     movel.reset_movimento()
 
+                self.personagem.reset_movimento()
+               
                 if self.moveis[0].rect.colliderect(self.objetivos[0]) and self.moveis[1].rect.colliderect(self.objetivos[1]):
                     if self.nao_tocou:
                         self.som_acerto.play()
                         self.nao_tocou = False
-                    
-                
+                        self.mudar_fase(2)
+            
+            if self.fase == 2:
+                self.tela.fill((18,18,18))
+                self.tela.blit(self.mapa, (335,115))
 
+                self.colisao_moveis()
+                self.colisao_paredes()  
+            
+
+                pygame.draw.rect(self.tela, (32,255, 20), self.personagem.rect)
+                pygame.draw.rect(self.tela, (32,255, 20), self.moveis[2])
+                self.personagem.desenhar_personagem(self.tela)
+                for movel in self.moveis:
+                    movel.desenhar_movel(self.tela)
+                    movel.reset_movimento()
+                self.personagem.reset_movimento()
+                
+            self.tela.blit(self.text_surf, (100, 60)) 
             pygame.display.flip()
             self.clock.tick(60)
 
