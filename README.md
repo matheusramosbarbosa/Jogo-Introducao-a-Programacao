@@ -114,4 +114,4 @@ O jogo é contextualizado, inicialmente, por um professor do Centro de Informát
     - **Resiliência:** Ao longo do projeto, enfrentamos, como já citado, diversos desafios e obstáculos, desde mudanças inesperadas no planejamento até problemas técnicos. No entanto, a capacidade de adaptar-se a essas situações e continuar avançando foi fundamental para o sucesso do nosso trabalho.
 
 ## Agradecimento Final:
-Por fim, a equipe agradece o esforço de todos os professores, monitores e demais profissionais do Centro de Informática da UFPE (CIn-UFPE) que, mesmo diante de um cenário de greve e incertezas, mantiveram-se firmes em prol de nosso desenvolvimento acadêmico. Obrigado!
+Por fim, a equipe agradece o esforço de todos os professores, monitores e todos os demais profissionais do Centro de Informática da UFPE (CIn-UFPE) que, mesmo diante de um cenário de greve e incertezas, mantiveram-se firmes em prol de nosso desenvolvimento acadêmico. Obrigado!
