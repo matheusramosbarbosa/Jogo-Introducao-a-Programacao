@@ -9,24 +9,25 @@ class Movel():
         self.x = x
         self.y = y
         self.casa = casa
+        
         self.surface = pygame.transform.scale(surf, (surf.get_width() * escala, surf.get_height() * escala))
         self.rect = pygame.Rect(self.x, self.y, self.surface.get_width(), self.surface.get_height() )
 
         #É necessario essas flags pra diferenciar as colisão entre Personagem e Movel
         self.move_direita = self.move_esquerda = self.move_cima = self.move_baixo = False
     #Movimentação do movel
-    def movimento_movel(self, direcao):
+    def movimento_movel(self, direcao, escala):
         if direcao == 'direita':
-            self.rect.x += self.casa
+            self.rect.x += 4 * escala
             self.move_direita = True
         if direcao == 'esquerda':
-            self.rect.x -= self.casa
+            self.rect.x -= 4 * escala
             self.move_esquerda = True
         if direcao == 'cima':
-            self.rect.y -= self.casa
+            self.rect.y -= 4 * escala
             self.move_cima = True
         if direcao == 'baixo':
-            self.rect.y += self.casa
+            self.rect.y += 4 * escala
             self.move_baixo = True
     
     def reset_movimento(self):
@@ -43,35 +44,73 @@ class Personagem:
         self.x = x
         self.y = y
         self.casa = casa
-
-        self.imagens = {'frente' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-0.png'), (pygame.image.load('graphics/prota-frente-0.png').get_width() * escala, pygame.image.load('graphics/prota-frente-0.png').get_height() * escala)),
-                        'costas' : pygame.transform.scale(pygame.image.load('graphics/prota-costas-0.png'), (pygame.image.load('graphics/prota-costas-0.png').get_width() * escala, pygame.image.load('graphics/prota-costas-0.png').get_height() * escala)),
-                        'direita' : pygame.transform.scale(pygame.image.load('graphics/prota-direita-0.png'), (pygame.image.load('graphics/prota-direita-0.png').get_width() * escala, pygame.image.load('graphics/prota-direita-0.png').get_height() * escala)),
-                        'esquerda': pygame.transform.scale(pygame.image.load('graphics/prota-esquerda-0.png'), (pygame.image.load('graphics/prota-esquerda-0.png').get_width() * escala, pygame.image.load('graphics/prota-esquerda-0.png').get_height() * escala))}
+        self.passos = 0
+        self.imagens = {'frente-0' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-0.png'), (pygame.image.load('graphics/prota-frente-0.png').get_width() * escala, pygame.image.load('graphics/prota-frente-0.png').get_height() * escala)),
+                        'frente-1' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-1.png'), (pygame.image.load('graphics/prota-frente-1.png').get_width() * escala, pygame.image.load('graphics/prota-frente-1.png').get_height() * escala)),
+                        'frente-2' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-2.png'), (pygame.image.load('graphics/prota-frente-2.png').get_width() * escala, pygame.image.load('graphics/prota-frente-2.png').get_height() * escala)),
+                        'costas-0' : pygame.transform.scale(pygame.image.load('graphics/prota-costas-0.png'), (pygame.image.load('graphics/prota-costas-0.png').get_width() * escala, pygame.image.load('graphics/prota-costas-0.png').get_height() * escala)),
+                        'costas-1' : pygame.transform.scale(pygame.image.load('graphics/prota-costas-1.png'), (pygame.image.load('graphics/prota-costas-1.png').get_width() * escala, pygame.image.load('graphics/prota-costas-1.png').get_height() * escala)),
+                        'costas-2' : pygame.transform.scale(pygame.image.load('graphics/prota-costas-2.png'), (pygame.image.load('graphics/prota-costas-2.png').get_width() * escala, pygame.image.load('graphics/prota-costas-2.png').get_height() * escala)),
+                        'direita-0' : pygame.transform.scale(pygame.image.load('graphics/prota-direita-0.png'), (pygame.image.load('graphics/prota-direita-0.png').get_width() * escala, pygame.image.load('graphics/prota-direita-0.png').get_height() * escala)),
+                        'direita-1' : pygame.transform.scale(pygame.image.load('graphics/prota-direita-1.png'), (pygame.image.load('graphics/prota-direita-1.png').get_width() * escala, pygame.image.load('graphics/prota-direita-1.png').get_height() * escala)),
+                        'direita-2' : pygame.transform.scale(pygame.image.load('graphics/prota-direita-2.png'), (pygame.image.load('graphics/prota-direita-2.png').get_width() * escala, pygame.image.load('graphics/prota-direita-2.png').get_height() * escala)),
+                        'esquerda-0': pygame.transform.scale(pygame.image.load('graphics/prota-esquerda-0.png'), (pygame.image.load('graphics/prota-esquerda-0.png').get_width() * escala, pygame.image.load('graphics/prota-esquerda-0.png').get_height() * escala)),
+                        'esquerda-1': pygame.transform.scale(pygame.image.load('graphics/prota-esquerda-1.png'), (pygame.image.load('graphics/prota-esquerda-1.png').get_width() * escala, pygame.image.load('graphics/prota-esquerda-1.png').get_height() * escala)),
+                        'esquerda-2' : pygame.transform.scale(pygame.image.load('graphics/prota-esquerda-2.png'), (pygame.image.load('graphics/prota-esquerda-2.png').get_width() * escala, pygame.image.load('graphics/prota-esquerda-2.png').get_height() * escala))}
        
-        self.surf = self.imagens['frente']    
+        self.surf = self.imagens['frente-0']   
         self.rect = pygame.Rect(self.x, self.y, self.surf.get_width(), self.surf.get_height())
 
         #É necessario essas flags pra diferenciar as colisão entre Personagem e Movel
         self.move_direita = self.move_esquerda = self.move_cima = self.move_baixo = False
 
-    def movimento(self, direcao):
+    def movimento(self, direcao, escala):
         if direcao == 'direita':
-            self.rect.x += self.casa
+            if(self.passos<60):
+                self.rect.x += 2 * escala
+            self.passos += 1
             self.move_direita = True
-            self.surf = self.imagens['direita']
+            if(self.passos>20 and self.passos<41)or(self.passos>60):
+                self.surf = self.imagens['direita-0']
+            if(self.passos<21):
+                self.surf = self.imagens['direita-1']
+            if(self.passos>40 and self.passos<61):
+                self.surf = self.imagens['direita-2']
         if direcao == 'esquerda':
-            self.rect.x -= self.casa
+            if(self.passos<60):
+                self.rect.x -= 2 * escala
+            self.passos += 1
             self.move_esquerda = True
-            self.surf = self.imagens['esquerda']
+            if(self.passos>20 and self.passos<41)or(self.passos>60):
+                self.surf = self.imagens['esquerda-0']
+            if(self.passos<21):
+                self.surf = self.imagens['esquerda-1']
+            if(self.passos>40 and self.passos<61):
+                self.surf = self.imagens['esquerda-2']
         if direcao == 'baixo':
-            self.rect.y += self.casa
+            if(self.passos<60):
+                self.rect.y += 2 * escala
+            self.passos += 1
             self.move_baixo = True
-            self.surf = self.imagens['frente']
+            if(self.passos>20 and self.passos<41)or(self.passos>60):
+                self.surf = self.imagens['frente-0']
+            if(self.passos<21):
+                self.surf = self.imagens['frente-1']
+            if(self.passos>40 and self.passos<61):
+                self.surf = self.imagens['frente-2']
         if direcao == 'cima':
-            self.rect.y -= self.casa
+            if(self.passos<60):
+                self.rect.y -= 2 * escala
+            self.passos += 1
             self.move_cima = True
-            self.surf = self.imagens['costas']
+            if(self.passos>20 and self.passos<41)or(self.passos>60):
+                self.surf = self.imagens['costas-0']
+            if(self.passos<21):
+                self.surf = self.imagens['costas-1']
+            if(self.passos>40 and self.passos<61):
+                self.surf = self.imagens['costas-2']
+
+    
 
     def reset_movimento(self):
         self.move_direita = self.move_esquerda = self.move_cima = self.move_baixo = False
@@ -118,6 +157,17 @@ class Fase_1:
 
         #Criação do personagem e dos moveis
         self.personagem = Personagem(590,190, 120, 1)
+        self.contagem = 0
+        self.animação = False
+        self.animaçãodireita = False
+        self.animaçãoesquerda = False
+        self.animaçãocima = False
+        self.animaçãobaixo = False
+
+        self.escala_movimento = 1
+        
+        self.movelsendocontado = 'nenhum'
+
         self.moveis = [Movel(470, 310, pygame.image.load('graphics/armario_hospital.png') ,120, 2),
                         Movel(710, 310, pygame.image.load('graphics/armario_hospital.png'), 120, 2)]
 
@@ -145,7 +195,7 @@ class Fase_1:
                 movel.rect.y += movel.casa
             if movel.rect.collidelist(self.paredes_baixo)!= -1 and movel.move_baixo:
                 movel.rect.y -= movel.casa
-
+            
             if movel.rect.colliderect(self.personagem.rect):
                 if self.personagem.move_esquerda:
                     self.personagem.rect.x += self.personagem.casa
@@ -155,32 +205,46 @@ class Fase_1:
                     self.personagem.rect.y += self.personagem.casa
                 if self.personagem.move_baixo:
                     self.personagem.rect.y -= self.personagem.casa
-            
-       
-            
-                    
 
     #Colisão Personagem/Movel, fazendo com que o movel se mova na mesma direção que o personagem está indo
     def colisao_moveis(self):
         for movel in self.moveis:
-            if self.personagem.rect.colliderect(movel.rect):
+            if (self.personagem.rect.colliderect(movel.rect))or(self.contagem>0 and self.movelsendocontado == movel):
                 if self.personagem.move_esquerda:
-                    movel.movimento_movel('esquerda')
+                    movel.movimento_movel('esquerda', self.escala_movimento)
+                    self.contagem += 1
+                    self.movelsendocontado = movel
+                    if(self.contagem==30):
+                        self.contagem = 0
+                        self.movelsendocontado = 'hehe ninguém'
                 if self.personagem.move_direita:
-                    movel.movimento_movel('direita')
+                    movel.movimento_movel('direita', self.escala_movimento)
+                    self.contagem += 1
+                    self.movelsendocontado = movel
+                    if(self.contagem==30):
+                        self.contagem = 0
+                        self.movelsendocontado = 'hehe ninguém'
                 if self.personagem.move_cima:
-                    movel.movimento_movel('cima')
+                    movel.movimento_movel('cima', self.escala_movimento)
+                    self.contagem += 1
+                    self.movelsendocontado = movel
+                    if(self.contagem==30):
+                        self.contagem = 0
+                        self.movelsendocontado = 'hehe ninguém'
                 if self.personagem.move_baixo:
-                    movel.movimento_movel('baixo')
-                
-            
-
+                    movel.movimento_movel('baixo', self.escala_movimento)
+                    self.contagem += 1
+                    self.movelsendocontado = movel
+                    if(self.contagem==30):
+                        self.contagem = 0
+                        self.movelsendocontado = 'hehe ninguém'
 
 
     def mudar_fase(self, fase):
         if fase == 2:
             self.mapa = pygame.image.load('graphics/fase_2.png')
             self.fase = 2
+            self.escala_movimento = 0.5
             self.personagem = Personagem(525,365, 60, 0.5)
             self.moveis = [Movel(585,365, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
                            Movel(405,245, pygame.image.load('graphics/armario_hospital.png'), 60,1),
@@ -201,19 +265,84 @@ class Fase_1:
                 if evento.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-                if evento.type == pygame.KEYUP:
-                    if evento.key == pygame.K_d :
-                        self.personagem.movimento('direita')
-                    if evento.key == pygame.K_a:
-                        self.personagem.movimento('esquerda')
-                    if evento.key == pygame.K_s:
-                        self.personagem.movimento('baixo')
-                    if evento.key == pygame.K_w:
-                        self.personagem.movimento('cima')
-                    
+                if (evento.type == pygame.KEYUP)and(not self.animação):
+                    if (evento.key == pygame.K_d):
+                        self.personagem.movimento('direita', self.escala_movimento)
+                        if(self.personagem.passos<90):    
+                            self.animação = True
+                            self.animaçãodireita = True
+                        else:
+                            self.animação = False
+                            self.animaçãodireita = False
+                            self.personagem.passos = 0
+                    if (evento.key == pygame.K_a) :
+                        self.personagem.movimento('esquerda', self.escala_movimento)
+                        if(self.personagem.passos<90):    
+                            self.animação = True
+                            self.animaçãoesquerda = True
+                        else:
+                            self.animação = False
+                            self.animaçãoesquerda = False
+                            self.personagem.passos = 0
+                    if (evento.key == pygame.K_s) :
+                        self.personagem.movimento('baixo', self.escala_movimento)
+                        if(self.personagem.passos<90):    
+                            self.animação = True
+                            self.animaçãobaixo = True
+                        else:
+                            self.animação = False
+                            self.animaçãobaixo = False
+                            self.personagem.passos = 0
+                    if (evento.key == pygame.K_w) :
+                        self.personagem.movimento('cima', self.escala_movimento)
+                        if(self.personagem.passos<90):    
+                            self.animação = True
+                            self.animaçãocima = True
+                        else:
+                            self.animação = False
+                            self.animaçãocima = False
+                            self.personagem.passos = 0
+                            
+            if (self.animação):
+                if (self.animaçãodireita) :
+                    self.personagem.movimento('direita', self.escala_movimento)
+                    if(self.personagem.passos<61):    
+                        self.animação = True
+                        self.animaçãodireita = True
+                    else:
+                        self.animação = False
+                        self.animaçãodireita = False
+                        self.personagem.passos = 0
+                if (self.animaçãoesquerda) :
+                    self.personagem.movimento('esquerda', self.escala_movimento)
+                    if(self.personagem.passos<61):    
+                        self.animação = True
+                        self.animaçãoesquerda = True
+                    else:
+                        self.animação = False
+                        self.animaçãoesquerda = False
+                        self.personagem.passos = 0
+                if (self.animaçãobaixo) :
+                    self.personagem.movimento('baixo', self.escala_movimento)
+                    if(self.personagem.passos<61):    
+                        self.animação = True
+                        self.animaçãobaixo = True
+                    else:
+                        self.animação = False
+                        self.animaçãobaixo = False
+                        self.personagem.passos = 0
+                if (self.animaçãocima) :
+                    self.personagem.movimento('cima', self.escala_movimento)
+                    if(self.personagem.passos<61):    
+                        self.animação = True
+                        self.animaçãocima = True
+                    else:
+                        self.animação = False
+                        self.animaçãocima = False
+                        self.personagem.passos = 0
+
             keys = pygame.key.get_pressed()
             
-       
             if self.fase == 1:
                 self.tela.fill((18,18,18))
                 self.tela.blit(self.mapa, (210,170))
@@ -244,19 +373,26 @@ class Fase_1:
                 self.tela.fill((18,18,18))
                 self.tela.blit(self.mapa, (335,115))
 
+                if keys[pygame.K_r]:
+                    self.personagem = Personagem(525,365, 60, 0.5)
+                    self.moveis = [Movel(585,365, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
+                                   Movel(405,245, pygame.image.load('graphics/armario_hospital.png'), 60,1),
+                                   Movel(825,185, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
+
+
                 self.colisao_moveis()
                 self.colisao_paredes()  
-            
 
                 pygame.draw.rect(self.tela, (32,255, 20), self.personagem.rect)
-                pygame.draw.rect(self.tela, (32,255, 20), self.moveis[2])
+                pygame.draw.rect(self.tela, (32,255, 20), self.moveis[0])
                 pygame.draw.rect(self.tela, (255,255, 32), self.paredes_esquerda[0])
                 self.personagem.desenhar_personagem(self.tela)
+
                 for movel in self.moveis:
                     movel.desenhar_movel(self.tela)
                     movel.reset_movimento()
                 self.personagem.reset_movimento()
-                
+            
             self.tela.blit(self.text_surf, (100, 60)) 
             pygame.display.flip()
             self.clock.tick(60)
