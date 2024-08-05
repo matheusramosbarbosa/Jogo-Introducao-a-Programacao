@@ -144,6 +144,7 @@ class Fase_1:
         self.text_surf = self.fonte_text.render('R = Reiniciar', False, 'White')
 
         self.fase = 1
+        self.resolucao = (210,170)
 
         self.mapa = pygame.image.load('graphics/fase_1.png')
         #Criação das dos retangulso das paredes, pra poder haver colisão
@@ -163,6 +164,7 @@ class Fase_1:
         self.animaçãoesquerda = False
         self.animaçãocima = False
         self.animaçãobaixo = False
+        
 
         self.escala_movimento = 1
         
@@ -244,6 +246,7 @@ class Fase_1:
         if fase == 2:
             self.mapa = pygame.image.load('graphics/fase_2.png')
             self.fase = 2
+            self.resolucao = (335,115)
             self.escala_movimento = 0.5
             self.personagem = Personagem(525,365, 60, 0.5)
             self.moveis = [Movel(585,365, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
@@ -254,8 +257,36 @@ class Fase_1:
                                  Parede(705,345, 110,20), Parede(885,465, 50,20), Parede(585,525, 230,20)]
             self.paredes_baixo = [Parede(465,175, 170,20), Parede(705,175, 110,20), Parede(345,415, 50,20),
                                   Parede(465,415, 350,20), Parede(405,535, 50,20), Parede(585,595, 350,20)]
-            self.paredes_esquerda = [Parede(385,125, 20,110)]
-            self.paredes_direita = []   
+            self.paredes_esquerda = [Parede(385,125, 20,110),Parede(335+290,115+70, 20,170),Parede(335+470,115+70, 20,170),
+                                     Parede(335-10,115+130, 20,170),Parede(335+50,115+310, 20,110),Parede(335+470,115+310, 20,110),
+                                     Parede(335+230,115+430, 20,50)]
+            self.paredes_direita = [Parede(335+540,115+10, 20,350), Parede(335+120,115+70, 20,170),Parede(335+360,115+70, 20,170),
+                                    Parede(335+120,115+310, 20,110), Parede(335+600,115+370, 20,110)]   
+            
+            self.objetivos = [Objetivo(335+250,115+430, 50,50), Objetivo(335+310,115+430, 50,50), Objetivo(335+370,115+430, 50,50)]
+        
+        if fase == 3:
+            self.mapa = pygame.image.load('graphics/fase_3.png')
+            self.fase = 3
+            self.resolucao = (360,145)
+            self.escala_movimento = 0.5
+            self.personagem = Personagem(360+190,145+370, 60, 0.5)
+            self.moveis = [Movel(360+190,145+250, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
+                           Movel(360+190,145+130, pygame.image.load('graphics/armario_hospital.png'), 60,1),
+                           Movel(360+370,145+250, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
+            
+            self.paredes_cima = [Parede(360+70,145-10, 170,20), Parede(360+370,145+110, 170,20), Parede(360+10,145+170, 50,20),
+                                 Parede(360+250,145+230, 110,20)]
+            self.paredes_baixo = [Parede(360+250,145+300, 290,20), Parede(360+10,145+360, 50,20), Parede(360+70,145+420, 170,20)]
+            self.paredes_esquerda = [Parede(360+50,145+10, 20,170),Parede(360+350,145+130, 20,110),Parede(360-10,145+190, 20,170),
+                                     Parede(360+50,145+370, 20,50)]
+            self.paredes_direita = [Parede(360+240,145+10, 20,230), Parede(360+540,145+130, 20,170),Parede(360+240,145+310, 20,110)]   
+            
+            self.objetivos = [Objetivo(360+10,145+190, 50,50), Objetivo(360+10,145+250, 50,50), Objetivo(360+10,145+310, 50,50)]
+
+        if fase == 4:
+            self.fase = 4
+            self.text_surf = self.fonte_text.render('Continua...', False, 'White')
 
 
 
@@ -265,7 +296,7 @@ class Fase_1:
                 if evento.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-                if (evento.type == pygame.KEYUP)and(not self.animação):
+                if (evento.type == pygame.KEYDOWN)and(not self.animação):
                     if (evento.key == pygame.K_d):
                         self.personagem.movimento('direita', self.escala_movimento)
                         if(self.personagem.passos<90):    
@@ -302,98 +333,103 @@ class Fase_1:
                             self.animação = False
                             self.animaçãocima = False
                             self.personagem.passos = 0
+            if self.fase == 4:
+                self.tela.fill((18,18,18))
+                self.tela.blit(self.text_surf, (480,350))
+
+            else:                  
+                if (self.animação):
+                    if (self.animaçãodireita) :
+                        self.personagem.movimento('direita', self.escala_movimento)
+                        if(self.personagem.passos<61):    
+                            self.animação = True
+                            self.animaçãodireita = True
+                        else:
+                            self.animação = False
+                            self.animaçãodireita = False
+                            self.personagem.passos = 0
+                    if (self.animaçãoesquerda) :
+                        self.personagem.movimento('esquerda', self.escala_movimento)
+                        if(self.personagem.passos<61):    
+                            self.animação = True
+                            self.animaçãoesquerda = True
+                        else:
+                            self.animação = False
+                            self.animaçãoesquerda = False
+                            self.personagem.passos = 0
+                    if (self.animaçãobaixo) :
+                        self.personagem.movimento('baixo', self.escala_movimento)
+                        if(self.personagem.passos<61):    
+                            self.animação = True
+                            self.animaçãobaixo = True
+                        else:
+                            self.animação = False
+                            self.animaçãobaixo = False
+                            self.personagem.passos = 0
+                    if (self.animaçãocima) :
+                        self.personagem.movimento('cima', self.escala_movimento)
+                        if(self.personagem.passos<61):    
+                            self.animação = True
+                            self.animaçãocima = True
+                        else:
+                            self.animação = False
+                            self.animaçãocima = False
+                            self.personagem.passos = 0
+
+            
+                keys = pygame.key.get_pressed()
+                self.tela.fill((18,18,18))
+                self.tela.blit(self.mapa, self.resolucao)
+
+                self.colisao_moveis()
+                self.colisao_paredes()  
+
+                self.personagem.desenhar_personagem(self.tela)
+                for movel in self.moveis:
+                    movel.desenhar_movel(self.tela)
+                    movel.reset_movimento()
+                self.personagem.reset_movimento()
+                self.tela.blit(self.text_surf, (100, 60)) 
+                if self.fase == 1:
+                    if keys[pygame.K_r]:
+                        self.personagem = Personagem(590,190, 120, 1)
+                        self.moveis = [Movel(470, 310, pygame.image.load('graphics/armario_hospital.png') ,120, 2),
+                                    Movel(710, 310, pygame.image.load('graphics/armario_hospital.png'), 120, 2)]
                             
-            if (self.animação):
-                if (self.animaçãodireita) :
-                    self.personagem.movimento('direita', self.escala_movimento)
-                    if(self.personagem.passos<61):    
-                        self.animação = True
-                        self.animaçãodireita = True
-                    else:
-                        self.animação = False
-                        self.animaçãodireita = False
-                        self.personagem.passos = 0
-                if (self.animaçãoesquerda) :
-                    self.personagem.movimento('esquerda', self.escala_movimento)
-                    if(self.personagem.passos<61):    
-                        self.animação = True
-                        self.animaçãoesquerda = True
-                    else:
-                        self.animação = False
-                        self.animaçãoesquerda = False
-                        self.personagem.passos = 0
-                if (self.animaçãobaixo) :
-                    self.personagem.movimento('baixo', self.escala_movimento)
-                    if(self.personagem.passos<61):    
-                        self.animação = True
-                        self.animaçãobaixo = True
-                    else:
-                        self.animação = False
-                        self.animaçãobaixo = False
-                        self.personagem.passos = 0
-                if (self.animaçãocima) :
-                    self.personagem.movimento('cima', self.escala_movimento)
-                    if(self.personagem.passos<61):    
-                        self.animação = True
-                        self.animaçãocima = True
-                    else:
-                        self.animação = False
-                        self.animaçãocima = False
-                        self.personagem.passos = 0
+                    if self.moveis[0].rect.colliderect(self.objetivos[0]) and self.moveis[1].rect.colliderect(self.objetivos[1]):
+                        if self.nao_tocou:
+                            self.som_acerto.play()
+                            self.nao_tocou = False
+                            self.mudar_fase(2)
+                 
 
-            keys = pygame.key.get_pressed()
-            
-            if self.fase == 1:
-                self.tela.fill((18,18,18))
-                self.tela.blit(self.mapa, (210,170))
+                if self.fase == 2:
+                    if keys[pygame.K_r]:
+                        self.personagem = Personagem(525,365, 60, 0.5)
+                        self.moveis = [Movel(585,365, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
+                                    Movel(405,245, pygame.image.load('graphics/armario_hospital.png'), 60,1),
+                                    Movel(825,185, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
+
+                    if self.moveis[0].rect.colliderect(self.objetivos[1]) and self.moveis[1].rect.colliderect(self.objetivos[2]) and self.moveis[2].rect.colliderect(self.objetivos[0]):
+                        if self.nao_tocou:
+                            self.som_acerto.play()
+                            self.nao_tocou = False
+                            self.mudar_fase(3)
                 
-                if keys[pygame.K_r]:
-                    self.personagem = Personagem(590,190, 120, 1)
-                    self.moveis = [Movel(470, 310, pygame.image.load('graphics/armario_hospital.png') ,120, 2),
-                                   Movel(710, 310, pygame.image.load('graphics/armario_hospital.png'), 120, 2)]
+                if self.fase == 3:
+                    if keys[pygame.K_r]:
+                        self.personagem = Personagem(360+190,145+370, 60, 0.5)
+                        self.moveis = [Movel(360+190,145+250, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
+                                    Movel(360+190,145+130, pygame.image.load('graphics/armario_hospital.png'), 60,1),
+                                    Movel(360+370,145+250, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
+                    if self.objetivos[0].rect.collidelist(self.moveis) != -1 and self.objetivos[1].rect.collidelist(self.moveis) != -1 and self.objetivos[2].rect.collidelist(self.moveis) != -1:
+                        if self.nao_tocou:
+                            self.som_acerto.play()
+                            self.nao_tocou = False
+                            self.mudar_fase(4)
+                
 
-
-                self.colisao_moveis()
-                self.colisao_paredes()  
-
-                self.personagem.desenhar_personagem(self.tela)
-                for movel in self.moveis:
-                    movel.desenhar_movel(self.tela)
-                    movel.reset_movimento()
-
-                self.personagem.reset_movimento()
-               
-                if self.moveis[0].rect.colliderect(self.objetivos[0]) and self.moveis[1].rect.colliderect(self.objetivos[1]):
-                    if self.nao_tocou:
-                        self.som_acerto.play()
-                        self.nao_tocou = False
-                        self.mudar_fase(2)
-            
-            if self.fase == 2:
-                self.tela.fill((18,18,18))
-                self.tela.blit(self.mapa, (335,115))
-
-                if keys[pygame.K_r]:
-                    self.personagem = Personagem(525,365, 60, 0.5)
-                    self.moveis = [Movel(585,365, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
-                                   Movel(405,245, pygame.image.load('graphics/armario_hospital.png'), 60,1),
-                                   Movel(825,185, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
-
-
-                self.colisao_moveis()
-                self.colisao_paredes()  
-
-                pygame.draw.rect(self.tela, (32,255, 20), self.personagem.rect)
-                pygame.draw.rect(self.tela, (32,255, 20), self.moveis[0])
-                pygame.draw.rect(self.tela, (255,255, 32), self.paredes_esquerda[0])
-                self.personagem.desenhar_personagem(self.tela)
-
-                for movel in self.moveis:
-                    movel.desenhar_movel(self.tela)
-                    movel.reset_movimento()
-                self.personagem.reset_movimento()
-            
-            self.tela.blit(self.text_surf, (100, 60)) 
+                
             pygame.display.flip()
             self.clock.tick(60)
 
