@@ -29,14 +29,10 @@ class Coleta:
         # Carrega o som de coleta:
         self.som_coleta = pygame.mixer.Sound('puzzle 2/sounds/som-coleta.wav')
 
-        # Carrega um espaço vazio que servirá para avançar de cena:
-        self.colisao_avancar_fase = pygame.image.load('imagens-puzzle1/imagens-coleta/espaco-colisao-avancar-fase.png')
-        self.colisao_avancar_fase = pygame.transform.scale(self.colisao_avancar_fase, (100, 100))
-
         # Define a posição do espaço vazio que servirá para avançar de cena e seu retângulo de colisão:
         self.colisao_avancar_fase_x = 1260
         self.colisao_avancar_fase_y = 550
-        self.rect_colisao_avancar_fase = pygame.Rect(self.colisao_avancar_fase_x, self.colisao_avancar_fase_y, self.colisao_avancar_fase.get_width(), self.colisao_avancar_fase.get_height())
+        self.rect_colisao_avancar_fase = pygame.Rect(self.colisao_avancar_fase_x, self.colisao_avancar_fase_y, 200, 200)
 
         # Inicializa o personagem:
         self.personagem = Personagem(self.largura_janela // 2, self.altura_janela // 2, 10, 2.4)
@@ -44,34 +40,7 @@ class Coleta:
         self.coletado = False
         self.avancar_fase = False
 
-    # Função para mostrar as cenas de introdução da coleta:
-    def cenas_iniciais(self):
-        cenas = [
-            'imagens-puzzle1/cenas-coleta/puzzle1-cena-coleta-intro1.png',
-            'imagens-puzzle1/cenas-coleta/puzzle1-cena-coleta-intro2.png',
-            'imagens-puzzle1/cenas-coleta/puzzle1-cena-coleta-intro3.png',
-            'imagens-puzzle1/cenas-coleta/puzzle1-cena-coleta-intro4.png',
-            'imagens-puzzle1/cenas-coleta/puzzle1-cena-coleta-intro5.png'
-        ]
-
-        for imagem_cena in cenas:
-            cena = pygame.image.load(imagem_cena)
-            cena = pygame.transform.scale(cena, (self.largura_janela, self.altura_janela))
-            status_introducao = True
-
-            while status_introducao:
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        sys.exit()
-
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_SPACE:
-                            status_introducao = False
-
-                self.tela.blit(cena, (0, 0))
-                pygame.display.flip()
-
+    
     def loop(self):
         status_coleta = True
         while status_coleta:
@@ -100,10 +69,6 @@ class Coleta:
                 self.avancar_fase = True
                 status_coleta = False
 
-            # "Desenha" o espaço para a colisão entre o personagem e o espaço de avançar de fase:
-            if not self.avancar_fase:
-                self.tela.blit(self.colisao_avancar_fase, (self.colisao_avancar_fase_x, self.colisao_avancar_fase_y))
-
             # Desenha o personagem:
             self.personagem.desenhar(self.tela)
 
@@ -123,5 +88,4 @@ def comecar_coleta():
     pygame.mixer.music.set_volume(0.4)
 
     jogo = Coleta()
-    jogo.cenas_iniciais() # Mostra as imagens introdutórias
     jogo.loop() # Executa a coleta de fatoc

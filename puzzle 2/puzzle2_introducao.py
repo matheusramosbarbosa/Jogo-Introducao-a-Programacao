@@ -1,6 +1,6 @@
 import pygame
 from puzzle2_desafio import Puzzle_2
-from puzzle2_coleta import comecar_coleta
+from puzzle2_coleta import comecar_coleta 
 
 # Inicializa o Pygame:
 pygame.init()
@@ -24,17 +24,23 @@ pygame.mixer.music.load('puzzle 2/sounds/Pokemon FireRedLeafGreen- Pokemon Cente
 pygame.mixer.music.play(-1)
 pygame.mixer.music.set_volume(0.4)
 
+
 # Atualiza o display inicial do jogo:
 pygame.display.flip()
 
 # ----- Declarações de funções: -----
 
+# Funcao do dialogo da introducao:
+def dialogo_introducao():
+    qualquercoisa = True
+
 # Função para alterar a cena de acordo com a cena atual:
+
 def alterar_cena():
     global aux_cena # Chama a variável global da cena auxiliar
     global status_jogo # Chama a variável global do status_jogo (cenas introdutórias)
     if aux_cena == 1:
-        comecar_coleta()
+        dialogo_introducao()
     if aux_cena == 2:
         pygame.mixer.music.stop()
         pygame.mixer.music.unload()
@@ -45,6 +51,9 @@ def alterar_cena():
         alterar_cena()
         
     elif aux_cena == 3:
+        comecar_coleta()
+
+        #AQUI CHAMA O PROXIMO PUZZLE (combate)
         status_jogo = False # Encerra o loop infinito
 
     aux_cena += 1

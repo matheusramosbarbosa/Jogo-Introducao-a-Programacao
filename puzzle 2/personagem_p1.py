@@ -16,29 +16,29 @@ class Personagem:
         # Carrega as imagens do personagem em movimento:
         self.imagens = {
             'esquerda':
-                [pygame.transform.scale(pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-esquerda-1.png'),
-           (pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-esquerda-1.png').get_width() * escala, pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-esquerda-1.png').get_height() * escala)), pygame.transform.scale(pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-esquerda-2.png'),
-           (pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-esquerda-2.png').get_width() * escala, pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-esquerda-2.png').get_height() * escala))],
+                [pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-esquerda-1.png'),
+           (pygame.image.load('puzzle 2/graphics/prota-esquerda-1.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-esquerda-1.png').get_height() * escala)), pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-esquerda-2.png'),
+           (pygame.image.load('puzzle 2/graphics/prota-esquerda-2.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-esquerda-2.png').get_height() * escala))],
 
             'direita':
-                [pygame.transform.scale(pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-direita-1.png'),
-           (pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-direita-1.png').get_width() * escala, pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-direita-1.png').get_height() * escala)), pygame.transform.scale(pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-direita-2.png'),
-           (pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-direita-2.png').get_width() * escala, pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-anda-direita-2.png').get_height() * escala))]
+                [pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-direita-1.png'),
+           (pygame.image.load('puzzle 2/graphics/prota-direita-1.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-direita-1.png').get_height() * escala)), pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-direita-2.png'),
+           (pygame.image.load('puzzle 2/graphics/prota-direita-2.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-direita-2.png').get_height() * escala))]
         }
 
         # Carrega as imagens do personagem parado:
         self.imagens_parado = {
             'frente':
-                pygame.transform.scale(pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-frente.png'),
-           (pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-frente.png').get_width() * escala, pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-frente.png').get_height() * escala)),
+                pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-frente-0.png'),
+           (pygame.image.load('puzzle 2/graphics/prota-frente-0.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-frente-0.png').get_height() * escala)),
 
             'esquerda':
-                pygame.transform.scale(pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-esquerda.png'),
-           (pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-esquerda.png').get_width() * escala, pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-esquerda.png').get_height() * escala)),
+                pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-esquerda-0.png'),
+           (pygame.image.load('puzzle 2/graphics/prota-esquerda-0.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-esquerda-0.png').get_height() * escala)),
 
             'direita':
-                pygame.transform.scale(pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-direita.png'),
-           (pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-direita.png').get_width() * escala, pygame.image.load('imagens-puzzle1/imagens-coleta/personagem-direita.png').get_height() * escala))
+                pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-direita-0.png'),
+           (pygame.image.load('puzzle 2/graphics/prota-direita-0.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-direita-0.png').get_height() * escala))
         }
 
         # Definir o retângulo do personagem
