@@ -1,4 +1,5 @@
 # Operação Crachá Perdido: Uma Aventura nos Centros da UFPE
+<img src="icone_ocp.png" alt="Descrição da Imagem Local" width="100"/> <label>Ícone do Jogo</label>
 
 ## Membros da Equipe:
 - Felipe Costa Santos Rosado (fcsr@cin.ufpe.br)
