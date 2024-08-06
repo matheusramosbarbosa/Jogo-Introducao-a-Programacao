@@ -51,27 +51,25 @@ O jogo é contextualizado, inicialmente, por um professor do Centro de Informát
 
 ## Divisão de Trabalho:
 ### Programação:
-- **Função de Movimentação:** Thiago Luiz.
-- **Sistema de Inserção do Mapa:** Matheus Henrique.
-- **Animação dos Sprites:** Felipe Rosado.
-- **Tela de Início Completa:** Matheus Henrique.
 - **Adaptação, Interligação e Ajustes dos Arquivos:** Joab Henrique.
-- **Inserção do Personagem:** Cada subgrupo em seu puzzle (visto a seguir).
-- **Barreiras no Mapa:** Cada subgrupo em seu puzzle (visto a seguir).
-- **Inserção de Trilha Sonora:** Cada subgrupo em seu puzzle (visto a seguir).
-- **Função de Interação com Objetos:** Cada subgrupo em seu puzzle (visto a seguir).
-- **Inventário para Armazenar os Coletáveis:** Joab Henrique.
+- **Animação dos Sprites:** Felipe Rosado.
 - **Função da Câmera:** Matheus Henrique.
-- **Puzzle 1:** Joab Henrique e Thiago Luiz.
-- **Puzzle 2:** Luiz Eduardo Lins e Paulo Henrique.
+- **Função de Movimentação:** Thiago Luiz.
+- **Inventário para Armazenar os Coletáveis:** Joab Henrique.
+- **Sistema de Inserção do Mapa:** Matheus Henrique.
+- **Tela de Início Completa:** Matheus Henrique.
+- **Inserção do Personagem, Barreiras no Mapa, Inserção de Trilha Sonora e Função de Interação com Objetos:** Cada subgrupo em seu puzzle (visto a seguir).
+- **Desafio 1:** Joab Henrique e Thiago Luiz.
+- **Desafio 2:** Luiz Eduardo Lins e Paulo Henrique.
 - **Batalha Final:** Felipe Rosado.
 
+
 ### Design:
-- **Tela de Início:** Matheus Henrique.
-- **Sprites do(s) Personagem(ns):** Felipe Rosado e Matheus Henrique.
-- **Mapa da UFPE (apenas a parte do CCEN, CIN, CCS e CAC):** Felipe Rosado, Matheus Henrique e Paulo Henrique.
-- **Design dos puzzles:** Trabalho em conjunto.
 - **Cenário de batalha:** Felipe Rosado e Matheus Henrique.
+- **Design dos puzzles:** Trabalho em conjunto.
+- **Mapa da UFPE (apenas a parte do CCEN, CIn, CCS e CAC):** Felipe Rosado, Matheus Henrique e Paulo Henrique.
+- **Sprites do(s) Personagem(ns):** Felipe Rosado e Matheus Henrique.
+- **Tela de Início:** Matheus Henrique.
 
 ### Trilha Sonora:
 - **Tela de Início:** Thiago Luiz.
@@ -83,7 +81,7 @@ O jogo é contextualizado, inicialmente, por um professor do Centro de Informát
 - **Puzzle 2:** Felipe Rosado.
 - **Batalha Final:** Felipe Rosado.
 
-### Game Testers:
+### Game Test:
 - Todos os membros da equipe.
 
 ### Relatórios, Slides e afins:
