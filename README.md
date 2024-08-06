@@ -34,13 +34,7 @@ O jogo é contextualizado, inicialmente, por um professor do Centro de Informát
 
 ## Bibliotecas e Ferramentas Utilizadas:
 ### Bibliotecas:
-- **PyGame:** Principal biblioteca do projeto, fornece funcionalidades para criar jogos 2D, facilitando a manipulação de gráficos, sons e eventos. Destaca-se, especialmente, os submódulos:
-  - **pygame.display:** É responsável por gerenciar a janela do jogo e a exibição dos gráficos, oferecendo funções para inicializar, atualizar e fechar a janela do jogo, além de controlar configurações de tela.
-  - **pygame.event:** É responsável por gerenciar os eventos do usuário, como pressionamentos de teclas, permitindo capturar e responder a eventos de forma eficiente.
-  - **pygame.Rect:** É utilizada para representar e manipular retângulos, permitindo a detecção de colisões e definir áreas de desenho na tela.
-  - **pygame.mixer:** É responsável pelo sistema de som, sendo utilizado para carregar e tocar músicas de fundo e efeitos sonoros durante o jogo, permitindo controlar o volume, parar e pausar a reprodução.
-  - **pygame.mixer.Sound:** É responsável por carregar e reproduzir efeitos sonoros individuais, fornecendo a possibilidade de gerenciar sons específicos, como sons de interação com objetos.
-
+- **PyGame:** Principal biblioteca do projeto, fornece funcionalidades para criar jogos 2D, facilitando a manipulação de gráficos, sons e eventos.
 - **Random:** Sendo uma biblioteca padrão do Python, é utilizada para gerar números pseudo-aleatórios. Ela foi crucial para aplicarmos funcionamentos de aleatoriedade e imprevisibilidade, tornando o jogo mais dinâmico e desafiador.
 
 ### Ferramentas:
