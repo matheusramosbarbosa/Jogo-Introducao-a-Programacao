@@ -45,18 +45,18 @@ class Personagem:
         self.y = y
         self.casa = casa * escala
         self.passos = 0
-        self.imagens = {'frente-0' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-0.png'), (pygame.image.load('graphics/prota-frente-0.png').get_width() * escala, pygame.image.load('graphics/prota-frente-0.png').get_height() * escala)),
-                        'frente-1' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-1.png'), (pygame.image.load('graphics/prota-frente-1.png').get_width() * escala, pygame.image.load('graphics/prota-frente-1.png').get_height() * escala)),
-                        'frente-2' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-2.png'), (pygame.image.load('graphics/prota-frente-2.png').get_width() * escala, pygame.image.load('graphics/prota-frente-2.png').get_height() * escala)),
-                        'costas-0' : pygame.transform.scale(pygame.image.load('graphics/prota-costas-0.png'), (pygame.image.load('graphics/prota-costas-0.png').get_width() * escala, pygame.image.load('graphics/prota-costas-0.png').get_height() * escala)),
-                        'costas-1' : pygame.transform.scale(pygame.image.load('graphics/prota-costas-1.png'), (pygame.image.load('graphics/prota-costas-1.png').get_width() * escala, pygame.image.load('graphics/prota-costas-1.png').get_height() * escala)),
-                        'costas-2' : pygame.transform.scale(pygame.image.load('graphics/prota-costas-2.png'), (pygame.image.load('graphics/prota-costas-2.png').get_width() * escala, pygame.image.load('graphics/prota-costas-2.png').get_height() * escala)),
-                        'direita-0' : pygame.transform.scale(pygame.image.load('graphics/prota-direita-0.png'), (pygame.image.load('graphics/prota-direita-0.png').get_width() * escala, pygame.image.load('graphics/prota-direita-0.png').get_height() * escala)),
-                        'direita-1' : pygame.transform.scale(pygame.image.load('graphics/prota-direita-1.png'), (pygame.image.load('graphics/prota-direita-1.png').get_width() * escala, pygame.image.load('graphics/prota-direita-1.png').get_height() * escala)),
-                        'direita-2' : pygame.transform.scale(pygame.image.load('graphics/prota-direita-2.png'), (pygame.image.load('graphics/prota-direita-2.png').get_width() * escala, pygame.image.load('graphics/prota-direita-2.png').get_height() * escala)),
-                        'esquerda-0': pygame.transform.scale(pygame.image.load('graphics/prota-esquerda-0.png'), (pygame.image.load('graphics/prota-esquerda-0.png').get_width() * escala, pygame.image.load('graphics/prota-esquerda-0.png').get_height() * escala)),
-                        'esquerda-1': pygame.transform.scale(pygame.image.load('graphics/prota-esquerda-1.png'), (pygame.image.load('graphics/prota-esquerda-1.png').get_width() * escala, pygame.image.load('graphics/prota-esquerda-1.png').get_height() * escala)),
-                        'esquerda-2' : pygame.transform.scale(pygame.image.load('graphics/prota-esquerda-2.png'), (pygame.image.load('graphics/prota-esquerda-2.png').get_width() * escala, pygame.image.load('graphics/prota-esquerda-2.png').get_height() * escala))}
+        self.imagens = {'frente-0' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-frente-0.png'), (pygame.image.load('puzzle 2/graphics/prota-frente-0.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-frente-0.png').get_height() * escala)),
+                        'frente-1' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-frente-1.png'), (pygame.image.load('puzzle 2/graphics/prota-frente-1.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-frente-1.png').get_height() * escala)),
+                        'frente-2' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-frente-2.png'), (pygame.image.load('puzzle 2/graphics/prota-frente-2.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-frente-2.png').get_height() * escala)),
+                        'costas-0' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-costas-0.png'), (pygame.image.load('puzzle 2/graphics/prota-costas-0.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-costas-0.png').get_height() * escala)),
+                        'costas-1' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-costas-1.png'), (pygame.image.load('puzzle 2/graphics/prota-costas-1.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-costas-1.png').get_height() * escala)),
+                        'costas-2' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-costas-2.png'), (pygame.image.load('puzzle 2/graphics/prota-costas-2.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-costas-2.png').get_height() * escala)),
+                        'direita-0' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-direita-0.png'), (pygame.image.load('puzzle 2/graphics/prota-direita-0.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-direita-0.png').get_height() * escala)),
+                        'direita-1' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-direita-1.png'), (pygame.image.load('puzzle 2/graphics/prota-direita-1.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-direita-1.png').get_height() * escala)),
+                        'direita-2' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-direita-2.png'), (pygame.image.load('puzzle 2/graphics/prota-direita-2.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-direita-2.png').get_height() * escala)),
+                        'esquerda-0': pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-esquerda-0.png'), (pygame.image.load('puzzle 2/graphics/prota-esquerda-0.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-esquerda-0.png').get_height() * escala)),
+                        'esquerda-1': pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-esquerda-1.png'), (pygame.image.load('puzzle 2/graphics/prota-esquerda-1.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-esquerda-1.png').get_height() * escala)),
+                        'esquerda-2' : pygame.transform.scale(pygame.image.load('puzzle 2/graphics/prota-esquerda-2.png'), (pygame.image.load('puzzle 2/graphics/prota-esquerda-2.png').get_width() * escala, pygame.image.load('puzzle 2/graphics/prota-esquerda-2.png').get_height() * escala))}
        
         self.surf = self.imagens['frente-0']   
         self.rect = pygame.Rect(self.x, self.y, self.surf.get_width(), self.surf.get_height())
@@ -146,7 +146,7 @@ class Puzzle_2:
         self.fase = 1
         self.resolucao = (210,155)
 
-        self.mapa = pygame.image.load('graphics/fase_1.png')
+        self.mapa = pygame.image.load('puzzle 2/graphics/fase_1.png')
         #Criação das dos retangulso das paredes, pra poder haver colisão
         self.paredes_cima = [Parede(450,140, 340,40), Parede(230,260, 220,40), Parede(830,260, 220,40)]
         self.paredes_baixo = [Parede(470,540, 340,40), Parede(230, 420, 220,40), Parede(830,420, 220,40)]
@@ -170,10 +170,10 @@ class Puzzle_2:
         
         self.movelsendocontado = 'nenhum'
 
-        self.moveis = [Movel(470, 310, pygame.image.load('graphics/armario_hospital.png') ,60, 2),
-                        Movel(710, 310, pygame.image.load('graphics/armario_hospital.png'), 60, 2)]
+        self.moveis = [Movel(470, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png') ,60, 2),
+                        Movel(710, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60, 2)]
 
-        self.som_acerto = pygame.mixer.Sound('sounds/acerto_sound_effect.mp3')
+        self.som_acerto = pygame.mixer.Sound('puzzle 2/sounds/acerto_sound_effect.mp3')
         self.nao_tocou = True
     #Quando o personagem ou um objeto colidir com o retangulo da parede, faz com que ele retorne um passso, gerando o efeito de que ele nao pode passar dali
     def colisao_paredes(self):
@@ -308,14 +308,14 @@ class Puzzle_2:
 
     def mudar_fase(self, fase):
         if fase == 2:
-            self.mapa = pygame.image.load('graphics/fase_2.png')
+            self.mapa = pygame.image.load('puzzle 2/graphics/fase_2.png')
             self.fase = 2
             self.resolucao = (335,120)
             self.escala_movimento = 0.5
             self.personagem = Personagem(525,395, 120, 0.5)
-            self.moveis = [Movel(585,395, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
-                           Movel(405,275, pygame.image.load('graphics/armario_hospital.png'), 60,1),
-                           Movel(825,215, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
+            self.moveis = [Movel(585,395, pygame.image.load('puzzle 2/graphics/maca_hospital.png'),60, 1), 
+                           Movel(405,275, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60,1),
+                           Movel(825,215, pygame.image.load('puzzle 2/graphics/aparelho_hospital.png'),60,1)] 
 
             self.paredes_cima = [Parede(405,135, 470,20), Parede(345,255,50,20), Parede(465,375, 170,20),
                                  Parede(705,375, 110,20), Parede(885,495, 50,20), Parede(585,555, 230,20)]
@@ -330,14 +330,14 @@ class Puzzle_2:
             self.objetivos = [Objetivo(335+250,145+430, 50,50), Objetivo(335+310,145+430, 50,50), Objetivo(335+370,145+430, 50,50)]
         
         if fase == 3:
-            self.mapa = pygame.image.load('graphics/fase_3.png')
+            self.mapa = pygame.image.load('puzzle 2/graphics/fase_3.png')
             self.fase = 3
             self.resolucao = (360,115)
             self.escala_movimento = 0.5
             self.personagem = Personagem(360+190,145+370, 120, 0.5)
-            self.moveis = [Movel(360+190,145+250, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
-                           Movel(360+190,145+130, pygame.image.load('graphics/armario_hospital.png'), 60,1),
-                           Movel(360+370,145+250, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
+            self.moveis = [Movel(360+190,145+250, pygame.image.load('puzzle 2/graphics/maca_hospital.png'),60, 1), 
+                           Movel(360+190,145+130, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60,1),
+                           Movel(360+370,145+250, pygame.image.load('puzzle 2/graphics/aparelho_hospital.png'),60,1)] 
             
             self.paredes_cima = [Parede(360+70,145-10, 170,20), Parede(360+370,145+110, 170,20), Parede(360+10,145+170, 50,20),
                                  Parede(360+250,145+230, 110,20)]
@@ -460,8 +460,8 @@ class Puzzle_2:
                 if self.fase == 1:
                     if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
                         self.personagem = Personagem(590,190, 120, 1)
-                        self.moveis = [Movel(470, 310, pygame.image.load('graphics/armario_hospital.png') ,60, 2),
-                                    Movel(710, 310, pygame.image.load('graphics/armario_hospital.png'), 60, 2)]
+                        self.moveis = [Movel(470, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png') ,60, 2),
+                                    Movel(710, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60, 2)]
                             
                     if self.moveis[0].rect.colliderect(self.objetivos[0]) and self.moveis[1].rect.colliderect(self.objetivos[1]) and self.personagem.passos == 0 and self.contagem == 0:
                         self.som_acerto.play()
@@ -470,9 +470,9 @@ class Puzzle_2:
                 if self.fase == 2:
                     if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
                         self.personagem = Personagem(525,395, 60, 0.5)
-                        self.moveis = [Movel(585,395, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
-                                    Movel(405,275, pygame.image.load('graphics/armario_hospital.png'), 60,1),
-                                    Movel(825,215, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
+                        self.moveis = [Movel(585,395, pygame.image.load('puzzle 2/graphics/maca_hospital.png'),60, 1), 
+                                    Movel(405,275, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60,1),
+                                    Movel(825,215, pygame.image.load('puzzle 2/graphics/aparelho_hospital.png'),60,1)] 
 
                     if self.moveis[0].rect.colliderect(self.objetivos[1]) and self.moveis[1].rect.colliderect(self.objetivos[2]) and self.moveis[2].rect.colliderect(self.objetivos[0]) and self.personagem.passos == 0 and self.contagem == 0:
                         self.som_acerto.play()
@@ -481,9 +481,9 @@ class Puzzle_2:
                 if self.fase == 3:
                     if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
                         self.personagem = Personagem(360+190,145+370, 60, 0.5)
-                        self.moveis = [Movel(360+190,145+250, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
-                                    Movel(360+190,145+130, pygame.image.load('graphics/armario_hospital.png'), 60,1),
-                                    Movel(360+370,145+250, pygame.image.load('graphics/aparelho_hospital.png'),60,1)] 
+                        self.moveis = [Movel(360+190,145+250, pygame.image.load('puzzle 2/graphics/maca_hospital.png'),60, 1), 
+                                    Movel(360+190,145+130, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60,1),
+                                    Movel(360+370,145+250, pygame.image.load('puzzle 2/graphics/aparelho_hospital.png'),60,1)] 
                     if self.objetivos[0].rect.collidelist(self.moveis) != -1 and self.objetivos[1].rect.collidelist(self.moveis) != -1 and self.objetivos[2].rect.collidelist(self.moveis) != -1 and self.personagem.passos == 0 and self.contagem == 0:
                         self.som_acerto.play()
                         self.mudar_fase(4)
