@@ -1,5 +1,6 @@
 import pygame
-import puzzle_2 as p2
+from puzzle2_desafio import Puzzle_2
+from puzzle2_coleta import comecar_coleta
 
 # Inicializa o Pygame:
 pygame.init()
@@ -9,9 +10,9 @@ tela = pygame.display.set_mode((1280, 720))
 
 # Define um nome pro jogo (aparece no canto superior da tela):
 pygame.display.set_caption('Operação Crachá Perdido: Uma Aventura nos Centros da UFPE')
-
+jogo = Puzzle_2()
 # Variáveis para carregar a cena inicial da fase:
-cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena1.png')  # Coleta a cena inicial
+cena = pygame.image.load('puzzle 2/graphics/fase_1.png')  # Coleta a cena inicial
 cena = pygame.transform.scale(cena, (1280, 720))  # Ajusta a imagem para cobrir a tela inteira
 aux_cena = 1  # Variável auxiliar para determinar qual a cena que está sendo exibida
 
@@ -19,9 +20,9 @@ aux_cena = 1  # Variável auxiliar para determinar qual a cena que está sendo e
 tela.blit(cena, (0, 0))
 
 # Define e executa a música de fundo em um loop infinito:
-pygame.mixer.music.load('sons-puzzle1/som-musica-fundo.mp3')
+pygame.mixer.music.load('puzzle 2/sounds/Pokemon FireRedLeafGreen- Pokemon Center.mp3')
 pygame.mixer.music.play(-1)
-pygame.mixer.music.set_volume(0.8)
+pygame.mixer.music.set_volume(0.4)
 
 # Atualiza o display inicial do jogo:
 pygame.display.flip()
@@ -32,40 +33,20 @@ pygame.display.flip()
 def alterar_cena():
     global aux_cena # Chama a variável global da cena auxiliar
     global status_jogo # Chama a variável global do status_jogo (cenas introdutórias)
-
-    # Se a cena atual for a 1, então carrega o segundo cenário e assim sucessivamente:
     if aux_cena == 1:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena2.png')
-    elif aux_cena == 2:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena3.png')
+        comecar_coleta()
+    if aux_cena == 2:
+        pygame.mixer.music.stop()
+        pygame.mixer.music.unload()
+        pygame.mixer.music.load('puzzle 2/sounds/Pokemon RubySapphireEmerald- Pokemon Center.mp3')
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(0.2)
+        jogo.loop()    
+        alterar_cena()
+        
     elif aux_cena == 3:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena4.png')
-    elif aux_cena == 4:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena5.png')
-    elif aux_cena == 5:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena6.png')
-    elif aux_cena == 6:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena7.png')
-    elif aux_cena == 7:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena8.png')
-    elif aux_cena == 8:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena9.png')
-    elif aux_cena == 9:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena10.png')
-    elif aux_cena == 10:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena11.png')
-    elif aux_cena == 11:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena12.png')
-    elif aux_cena == 12:
-        cena = pygame.image.load('imagens-puzzle1/cenas-introducao/puzzle1-cena13.png')
-    elif aux_cena == 13:
-        p2.Puzzle_2.loop() # Começa a disputa de penâltis
-    elif aux_cena == 14:
         status_jogo = False # Encerra o loop infinito
 
-    cena = pygame.transform.scale(cena, (1280, 720))
-    tela.blit(cena, (0, 0))
-    pygame.display.flip()
     aux_cena += 1
 
 # ----- Execução do jogo: -----

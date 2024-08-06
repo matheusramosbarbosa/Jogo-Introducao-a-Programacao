@@ -138,11 +138,13 @@ class Puzzle_2:
         self.largura_janela = 1280
         self.altura_janela = 720
         self.tela = pygame.display.set_mode((self.largura_janela, self.altura_janela))
+        pygame.display.set_caption('Operação Crachá Perdido: Uma Aventura nos Centros da UFPE')
         self.clock = pygame.time.Clock()
         
         self.fonte_text = pygame.font.Font('Pixeltype.ttf', 100)
         self.text_surf = self.fonte_text.render('R = Reiniciar', False, 'White')
 
+        self.desafio = True
         self.fase = 1
         self.resolucao = (210,155)
 
@@ -165,6 +167,7 @@ class Puzzle_2:
         self.animaçãocima = False
         self.animaçãobaixo = False
         
+        
 
         self.escala_movimento = 1
         
@@ -172,6 +175,8 @@ class Puzzle_2:
 
         self.moveis = [Movel(470, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png') ,60, 2),
                         Movel(710, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60, 2)]
+
+        
 
         self.som_acerto = pygame.mixer.Sound('puzzle 2/sounds/acerto_sound_effect.mp3')
         self.nao_tocou = True
@@ -349,14 +354,12 @@ class Puzzle_2:
             self.objetivos = [Objetivo(360+10,145+190, 50,50), Objetivo(360+10,145+250, 50,50), Objetivo(360+10,145+310, 50,50)]
 
         if fase == 4:
-            self.fase = 4
-            self.text_surf = self.fonte_text.render('Continua...', False, 'White')
+            self.desafio = False
 
     
 
     def loop(self):
-        while True:
-            pygame.display.set_caption('Operação Crachá Perdido: Uma Aventura nos Centros da UFPE')
+        while self.desafio:   
             for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:
                     pygame.quit()
@@ -398,106 +401,97 @@ class Puzzle_2:
                             self.animação = False
                             self.animaçãocima = False
                             self.personagem.passos = 0
-            if self.fase == 4:
-                self.tela.fill((18,18,18))
-                self.tela.blit(self.text_surf, (480,350))
-
-            else:                  
-                if (self.animação):
-                    if (self.animaçãodireita) :
-                        self.personagem.movimento('direita', self.escala_movimento)
-                        if(self.personagem.passos<31):    
-                            self.animação = True
-                            self.animaçãodireita = True
-                        else:
-                            self.animação = False
-                            self.animaçãodireita = False
-                            self.personagem.passos = 0
-                    if (self.animaçãoesquerda) :
-                        self.personagem.movimento('esquerda', self.escala_movimento)
-                        if(self.personagem.passos<31):    
-                            self.animação = True
-                            self.animaçãoesquerda = True
-                        else:
-                            self.animação = False
-                            self.animaçãoesquerda = False
-                            self.personagem.passos = 0
-                    if (self.animaçãobaixo) :
-                        self.personagem.movimento('baixo', self.escala_movimento)
-                        if(self.personagem.passos<31):    
-                            self.animação = True
-                            self.animaçãobaixo = True
-                        else:
-                            self.animação = False
-                            self.animaçãobaixo = False
-                            self.personagem.passos = 0
-                    if (self.animaçãocima) :
-                        self.personagem.movimento('cima', self.escala_movimento)
-                        if(self.personagem.passos<31):    
-                            self.animação = True
-                            self.animaçãocima = True
-                        else:
-                            self.animação = False
-                            self.animaçãocima = False
-                            self.personagem.passos = 0
+                    
+            if (self.animação):
+                if (self.animaçãodireita) :
+                    self.personagem.movimento('direita', self.escala_movimento)
+                    if(self.personagem.passos<31):    
+                        self.animação = True
+                        self.animaçãodireita = True
+                    else:
+                        self.animação = False
+                        self.animaçãodireita = False
+                        self.personagem.passos = 0
+                if (self.animaçãoesquerda) :
+                    self.personagem.movimento('esquerda', self.escala_movimento)
+                    if(self.personagem.passos<31):    
+                        self.animação = True
+                        self.animaçãoesquerda = True
+                    else:
+                        self.animação = False
+                        self.animaçãoesquerda = False
+                        self.personagem.passos = 0
+                if (self.animaçãobaixo) :
+                    self.personagem.movimento('baixo', self.escala_movimento)
+                    if(self.personagem.passos<31):    
+                        self.animação = True
+                        self.animaçãobaixo = True
+                    else:
+                        self.animação = False
+                        self.animaçãobaixo = False
+                        self.personagem.passos = 0
+                if (self.animaçãocima) :
+                    self.personagem.movimento('cima', self.escala_movimento)
+                    if(self.personagem.passos<31):    
+                        self.animação = True
+                        self.animaçãocima = True
+                    else:
+                        self.animação = False
+                        self.animaçãocima = False
+                        self.personagem.passos = 0
 
 
-                
-                keys = pygame.key.get_pressed()
-                self.tela.fill((18,18,18))
-                self.tela.blit(self.mapa, self.resolucao)
+            
+            keys = pygame.key.get_pressed()
+            self.tela.fill((18,18,18))
+            self.tela.blit(self.mapa, self.resolucao)
 
-                self.colisao_moveis()
-                
-                
+            self.colisao_moveis()
+            
+            
 
-                self.personagem.desenhar_personagem(self.tela)
-                for movel in self.moveis:
-                    movel.desenhar_movel(self.tela)
-                    movel.reset_movimento()
-                self.personagem.reset_movimento()
-                self.tela.blit(self.text_surf, (35, 60)) 
-                
-                if self.fase == 1:
-                    if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
-                        self.personagem = Personagem(590,190, 120, 1)
-                        self.moveis = [Movel(470, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png') ,60, 2),
-                                    Movel(710, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60, 2)]
-                            
-                    if self.moveis[0].rect.colliderect(self.objetivos[0]) and self.moveis[1].rect.colliderect(self.objetivos[1]) and self.personagem.passos == 0 and self.contagem == 0:
-                        self.som_acerto.play()
-                        self.mudar_fase(2)
-                    #self.mudar_fase(2)
-                if self.fase == 2:
-                    if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
-                        self.personagem = Personagem(525,395, 60, 0.5)
-                        self.moveis = [Movel(585,395, pygame.image.load('puzzle 2/graphics/maca_hospital.png'),60, 1), 
-                                    Movel(405,275, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60,1),
-                                    Movel(825,215, pygame.image.load('puzzle 2/graphics/aparelho_hospital.png'),60,1)] 
+            self.personagem.desenhar_personagem(self.tela)
+            for movel in self.moveis:
+                movel.desenhar_movel(self.tela)
+                movel.reset_movimento()
+            self.personagem.reset_movimento()
+            self.tela.blit(self.text_surf, (35, 60)) 
+            
+            if self.fase == 1:
+                if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
+                    self.personagem = Personagem(590,190, 120, 1)
+                    self.moveis = [Movel(470, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png') ,60, 2),
+                                Movel(710, 310, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60, 2)]
+                        
+                if self.moveis[0].rect.colliderect(self.objetivos[0]) and self.moveis[1].rect.colliderect(self.objetivos[1]) and self.personagem.passos == 0 and self.contagem == 0:
+                    self.som_acerto.play()
+                    self.mudar_fase(2)
+                #self.mudar_fase(3)
+            if self.fase == 2:
+                if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
+                    self.personagem = Personagem(525,395, 60, 0.5)
+                    self.moveis = [Movel(585,395, pygame.image.load('puzzle 2/graphics/maca_hospital.png'),60, 1), 
+                                Movel(405,275, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60,1),
+                                Movel(825,215, pygame.image.load('puzzle 2/graphics/aparelho_hospital.png'),60,1)] 
 
-                    if self.moveis[0].rect.colliderect(self.objetivos[1]) and self.moveis[1].rect.colliderect(self.objetivos[2]) and self.moveis[2].rect.colliderect(self.objetivos[0]) and self.personagem.passos == 0 and self.contagem == 0:
-                        self.som_acerto.play()
-                        self.mudar_fase(3)
+                if self.moveis[0].rect.colliderect(self.objetivos[1]) and self.moveis[1].rect.colliderect(self.objetivos[2]) and self.moveis[2].rect.colliderect(self.objetivos[0]) and self.personagem.passos == 0 and self.contagem == 0:
+                    self.som_acerto.play()
+                    self.mudar_fase(3)
                 
-                if self.fase == 3:
-                    if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
-                        self.personagem = Personagem(360+190,145+370, 60, 0.5)
-                        self.moveis = [Movel(360+190,145+250, pygame.image.load('puzzle 2/graphics/maca_hospital.png'),60, 1), 
-                                    Movel(360+190,145+130, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60,1),
-                                    Movel(360+370,145+250, pygame.image.load('puzzle 2/graphics/aparelho_hospital.png'),60,1)] 
-                    if self.objetivos[0].rect.collidelist(self.moveis) != -1 and self.objetivos[1].rect.collidelist(self.moveis) != -1 and self.objetivos[2].rect.collidelist(self.moveis) != -1 and self.personagem.passos == 0 and self.contagem == 0:
-                        self.som_acerto.play()
-                        self.mudar_fase(4)
-                
+            if self.fase == 3:
+                if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
+                    self.personagem = Personagem(360+190,145+370, 60, 0.5)
+                    self.moveis = [Movel(360+190,145+250, pygame.image.load('puzzle 2/graphics/maca_hospital.png'),60, 1), 
+                                Movel(360+190,145+130, pygame.image.load('puzzle 2/graphics/armario_hospital.png'), 60,1),
+                                Movel(360+370,145+250, pygame.image.load('puzzle 2/graphics/aparelho_hospital.png'),60,1)] 
+                if self.objetivos[0].rect.collidelist(self.moveis) != -1 and self.objetivos[1].rect.collidelist(self.moveis) != -1 and self.objetivos[2].rect.collidelist(self.moveis) != -1 and self.personagem.passos == 0 and self.contagem == 0:
+                    self.som_acerto.play()
+                    self.mudar_fase(4)
+            
 
                 
             pygame.display.flip()
             self.clock.tick(60)
-
-
-puzzle = Puzzle_2()
-puzzle.loop()
-        
 
         
         
