@@ -1,6 +1,7 @@
 import pygame
 tentar = True
 pygame.init()
+tentativas = 0
 while tentar:
     tela = pygame.display.set_mode((1280, 720))
     relogio = pygame.time.Clock()
@@ -10,7 +11,22 @@ while tentar:
     hp_jogador_inicial = 200
     hp_jogador = hp_jogador_inicial
     ataque_jogador = 40
-
+    if tentativas <= 1:
+        for i in range(3):
+            class Tutorial(pygame.sprite.Sprite):
+                def __init__(self, groups):
+                    super().__init__(groups)
+                    self.image = pygame.image.load(f'explica{i}.png')
+                    self.rect = self.image.get_rect(center=(640, 502))
+            tutorial = Tutorial(todos_sprites)
+            tela.fill('black')
+            todos_sprites.update(relogio)
+            todos_sprites.draw(tela)
+            pygame.display.update()
+            tutorial.remove(todos_sprites)
+            pygame.time.wait(2500)
+            if i == 1:
+                pygame.time.wait(2500)
 
     # boss 272 332 374
     class Boss(pygame.sprite.Sprite):
@@ -45,7 +61,7 @@ while tentar:
     luta = True
     derrota = False
     vitoria = False
-    tempo = relogio.tick() / 1000
+    tempo = relogio.tick()
     todos_sprites.update(tempo)
     todos_sprites.draw(tela)
     pygame.display.update()
@@ -223,6 +239,7 @@ while tentar:
             pygame.mixer.music.unload()
             pygame.mixer.music.load("1.16 Toby Fox - DELTARUNE Chapter 2 OST - 16 Faint Courage (Game Over).mp3")
             pygame.mixer.music.play(-1)
+            tentativas += 1
             for i in range (5):
                 recomeco = pygame.sprite.Group()
                 class Recomecar(pygame.sprite.Sprite):
@@ -239,4 +256,5 @@ while tentar:
                 recomecar.remove(recomeco)
             pygame.mixer.music.stop()
             pygame.mixer.music.unload()
+
 pygame.quit()
