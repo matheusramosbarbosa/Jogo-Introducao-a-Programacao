@@ -466,7 +466,7 @@ class Puzzle_2:
                 if self.moveis[0].rect.colliderect(self.objetivos[0]) and self.moveis[1].rect.colliderect(self.objetivos[1]) and self.personagem.passos == 0 and self.contagem == 0:
                     self.som_acerto.play()
                     self.mudar_fase(2)
-                #self.mudar_fase(3)
+                #self.mudar_fase(4)
             if self.fase == 2:
                 if keys[pygame.K_r] and self.personagem.passos == 0 and self.contagem == 0:
                     self.personagem = Personagem(525,395, 60, 0.5)

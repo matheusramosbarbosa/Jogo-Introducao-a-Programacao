@@ -1,6 +1,6 @@
 import pygame
 import sys
-from personagem_p1 import Personagem
+from personagem_coleta import Personagem
 
 status_coleta = False
 
@@ -14,7 +14,7 @@ class Coleta:
         pygame.display.set_caption('Operação Crachá Perdido: Uma Aventura nos Centros da UFPE')
 
         # Carrega a imagem de fundo:
-        self.fundo = pygame.image.load('puzzle 2/graphics/fase_2.png')
+        self.fundo = pygame.image.load('puzzle 2/graphics/cena-coleta.png')
         self.fundo = pygame.transform.scale(self.fundo, (self.largura_janela, self.altura_janela))
 
         # Carrega o fragmento de chave (coletável):
@@ -22,7 +22,7 @@ class Coleta:
         self.imagem_fragmento_1 = pygame.transform.scale(self.imagem_fragmento_1, (100, 100))
 
         # Define a posição do fragmento de chave (coletável) e seu retângulo de colisão:
-        self.imagem_fragmento_1_x = 1100
+        self.imagem_fragmento_1_x = 900
         self.imagem_fragmento_1_y = 550
         self.rect_imagem_fragmento_1 = pygame.Rect(self.imagem_fragmento_1_x, self.imagem_fragmento_1_y, self.imagem_fragmento_1.get_width(), self.imagem_fragmento_1.get_height())
 
@@ -40,7 +40,33 @@ class Coleta:
         self.coletado = False
         self.avancar_fase = False
 
-    
+    def cenas_iniciais(self):
+        cenas = [
+            'puzzle 2/graphics/cena-coleta-1.png',
+            'puzzle 2/graphics/cena-coleta-2.png',
+            'puzzle 2/graphics/cena-coleta-3.png',
+            'puzzle 2/graphics/cena-coleta-4.png',
+        ]
+
+        for imagem_cena in cenas:
+            cena = pygame.image.load(imagem_cena)
+            cena = pygame.transform.scale(cena, (self.largura_janela, self.altura_janela))
+            status_introducao = True
+
+            while status_introducao:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_SPACE:
+                            status_introducao = False
+
+                self.tela.blit(cena, (0, 0))
+                pygame.display.flip()
+
+
     def loop(self):
         status_coleta = True
         while status_coleta:
@@ -85,7 +111,8 @@ class Coleta:
 def comecar_coleta():
     pygame.mixer.music.load('puzzle 2/sounds/Pokemon FireRedLeafGreen- Pokemon Center.mp3')
     pygame.mixer.music.play(-1)
-    pygame.mixer.music.set_volume(0.4)
+    pygame.mixer.music.set_volume(0.1)
 
     jogo = Coleta()
+    jogo.cenas_iniciais()
     jogo.loop() # Executa a coleta de fatoc
