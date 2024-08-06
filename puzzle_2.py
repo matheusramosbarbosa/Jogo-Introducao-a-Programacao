@@ -8,7 +8,7 @@ class Movel():
         #Posição (x,y) e o tamanho da casa (quantidade de pixels) que ele anda
         self.x = x
         self.y = y
-        self.casa = casa
+        self.casa = casa * escala
         
         self.surface = pygame.transform.scale(surf, (surf.get_width() * escala, surf.get_height() * escala))
         self.rect = pygame.Rect(self.x, self.y, self.surface.get_width(), self.surface.get_height() )
@@ -43,7 +43,7 @@ class Personagem:
     def __init__(self, x, y, casa, escala):
         self.x = x
         self.y = y
-        self.casa = casa
+        self.casa = casa * escala
         self.passos = 0
         self.imagens = {'frente-0' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-0.png'), (pygame.image.load('graphics/prota-frente-0.png').get_width() * escala, pygame.image.load('graphics/prota-frente-0.png').get_height() * escala)),
                         'frente-1' : pygame.transform.scale(pygame.image.load('graphics/prota-frente-1.png'), (pygame.image.load('graphics/prota-frente-1.png').get_width() * escala, pygame.image.load('graphics/prota-frente-1.png').get_height() * escala)),
@@ -132,7 +132,7 @@ class Objetivo(Parede):
         super().__init__(x, y, largura, altura)
 
 #Jogo
-class Fase_1:
+class Puzzle_2:
     def __init__(self):
         pygame.init()
         self.largura_janela = 1280
@@ -144,14 +144,14 @@ class Fase_1:
         self.text_surf = self.fonte_text.render('R = Reiniciar', False, 'White')
 
         self.fase = 1
-        self.resolucao = (210,170)
+        self.resolucao = (210,155)
 
         self.mapa = pygame.image.load('graphics/fase_1.png')
         #Criação das dos retangulso das paredes, pra poder haver colisão
-        self.paredes_cima = [Parede(470,150, 340,40), Parede(230,270, 220,40), Parede(830,270, 220,40)]
-        self.paredes_baixo = [Parede(470,530, 340,40), Parede(230, 410, 220,40), Parede(830,410, 220,40)]
-        self.paredes_esquerda = [Parede(430,190, 40,100), Parede(430,430, 40,100), Parede(190,310, 40,100)]
-        self.paredes_direita = [Parede(810,190, 40,100), Parede(810,430, 40,100), Parede(1050,310, 40,100)]
+        self.paredes_cima = [Parede(450,140, 340,40), Parede(230,260, 220,40), Parede(830,260, 220,40)]
+        self.paredes_baixo = [Parede(470,540, 340,40), Parede(230, 420, 220,40), Parede(830,420, 220,40)]
+        self.paredes_esquerda = [Parede(420,190, 40,100), Parede(420,430, 40,100), Parede(180,310, 40,100)]
+        self.paredes_direita = [Parede(820,190, 40,100), Parede(820,430, 40,100), Parede(1060,310, 40,100)]
 
         #Criação do retangulo da casa onde o personagem precisa empurrar os moveis
         self.objetivos = [Objetivo(230,310, 100,100), Objetivo(950,310, 100,100)]
@@ -180,33 +180,97 @@ class Fase_1:
         #Personagem/Parede:
         if self.personagem.rect.collidelist(self.paredes_direita) != -1 and self.personagem.move_direita:
             self.personagem.rect.x -= self.personagem.casa
+            return True
         if self.personagem.rect.collidelist(self.paredes_esquerda) != -1 and self.personagem.move_esquerda:
             self.personagem.rect.x += self.personagem.casa
+            return True
         if self.personagem.rect.collidelist(self.paredes_cima) != -1 and self.personagem.move_cima:
             self.personagem.rect.y += self.personagem.casa
+            return True
         if self.personagem.rect.collidelist(self.paredes_baixo)!= -1 and self.personagem.move_baixo:
             self.personagem.rect.y -= self.personagem.casa
+            return True
 
         #Objeto/Parede:
         for movel in self.moveis:
             if movel.rect.collidelist(self.paredes_direita) != -1 and movel.move_direita:
                 movel.rect.x -= movel.casa
+                self.personagem.rect.x -= self.personagem.casa
+                return True
             if movel.rect.collidelist(self.paredes_esquerda) != -1 and movel.move_esquerda:
                 movel.rect.x += movel.casa
+                self.personagem.rect.x += self.personagem.casa
+                return True
             if movel.rect.collidelist(self.paredes_cima) != -1 and movel.move_cima:
                 movel.rect.y += movel.casa
+                self.personagem.rect.y += self.personagem.casa
+                return True
             if movel.rect.collidelist(self.paredes_baixo)!= -1 and movel.move_baixo:
                 movel.rect.y -= movel.casa
+                self.personagem.rect.y -= self.personagem.casa
+                return True
             
-            if movel.rect.colliderect(self.personagem.rect):
-                if self.personagem.move_esquerda:
-                    self.personagem.rect.x += self.personagem.casa
-                if self.personagem.move_direita:
-                    self.personagem.rect.x -= self.personagem.casa
-                if self.personagem.move_cima:
-                    self.personagem.rect.y += self.personagem.casa
-                if self.personagem.move_baixo:
-                    self.personagem.rect.y -= self.personagem.casa
+    def podeandar(self, objeto, direcao, émovel):
+        if direcao == 'direita':
+            objeto.rect.x += objeto.casa
+            objeto.move_direita = True
+            if self.colisao_paredes():
+                return False
+            for movel in self.moveis:
+                if(movel!=objeto):
+                    if(objeto.rect.colliderect(movel.rect)):
+                        if(émovel =='sim'):
+                            return False
+                        resultado = self.podeandar(movel, direcao, 'sim')
+                        objeto.rect.x -= objeto.casa
+                        return resultado
+            objeto.rect.x -= objeto.casa
+            return True
+        if direcao == 'esquerda':
+            objeto.rect.x -= objeto.casa
+            objeto.move_esquerda = True
+            if self.colisao_paredes():
+                return False
+            for movel in self.moveis:
+                if(movel!=objeto):
+                    if(objeto.rect.colliderect(movel.rect)):
+                        if(émovel =='sim'):
+                            return False
+                        resultado = self.podeandar(movel, direcao, 'sim')
+                        objeto.rect.x += objeto.casa
+                        return resultado
+            objeto.rect.x += objeto.casa
+            return True
+        if direcao == 'cima':
+            objeto.rect.y -= objeto.casa
+            objeto.move_cima = True
+            if self.colisao_paredes():
+                return False
+            for movel in self.moveis:
+                if(movel!=objeto):
+                    if(objeto.rect.colliderect(movel.rect)):
+                        if(émovel =='sim'):
+                            return False
+                        resultado = self.podeandar(movel, direcao, 'sim')
+                        objeto.rect.y += objeto.casa
+                        return resultado
+            objeto.rect.y += objeto.casa
+            return True
+        if direcao == 'baixo':
+            objeto.rect.y += objeto.casa
+            objeto.move_baixo = True
+            if self.colisao_paredes():
+                return False
+            for movel in self.moveis:
+                if(movel!=objeto):
+                    if(objeto.rect.colliderect(movel.rect)):
+                        if(émovel =='sim'):
+                            return False
+                        resultado = self.podeandar(movel, direcao, 'sim')
+                        objeto.rect.y -= objeto.casa
+                        return resultado
+            objeto.rect.y -= objeto.casa
+            return True
 
     #Colisão Personagem/Movel, fazendo com que o movel se mova na mesma direção que o personagem está indo
     def colisao_moveis(self):
@@ -246,7 +310,7 @@ class Fase_1:
         if fase == 2:
             self.mapa = pygame.image.load('graphics/fase_2.png')
             self.fase = 2
-            self.resolucao = (335,115)
+            self.resolucao = (335,90)
             self.escala_movimento = 0.5
             self.personagem = Personagem(525,365, 60, 0.5)
             self.moveis = [Movel(585,365, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
@@ -268,7 +332,7 @@ class Fase_1:
         if fase == 3:
             self.mapa = pygame.image.load('graphics/fase_3.png')
             self.fase = 3
-            self.resolucao = (360,145)
+            self.resolucao = (360,115)
             self.escala_movimento = 0.5
             self.personagem = Personagem(360+190,145+370, 60, 0.5)
             self.moveis = [Movel(360+190,145+250, pygame.image.load('graphics/maca_hospital.png'),60, 1), 
@@ -288,7 +352,7 @@ class Fase_1:
             self.fase = 4
             self.text_surf = self.fonte_text.render('Continua...', False, 'White')
 
-
+    
 
     def loop(self):
         while True:
@@ -297,7 +361,7 @@ class Fase_1:
                     pygame.quit()
                     exit()
                 if (evento.type == pygame.KEYDOWN)and(not self.animação):
-                    if (evento.key == pygame.K_d):
+                    if (evento.key == pygame.K_d)and self.podeandar(self.personagem, 'direita', 'não'):
                         self.personagem.movimento('direita', self.escala_movimento)
                         if(self.personagem.passos<90):    
                             self.animação = True
@@ -306,7 +370,7 @@ class Fase_1:
                             self.animação = False
                             self.animaçãodireita = False
                             self.personagem.passos = 0
-                    if (evento.key == pygame.K_a) :
+                    if (evento.key == pygame.K_a)and self.podeandar(self.personagem, 'esquerda', 'não'):
                         self.personagem.movimento('esquerda', self.escala_movimento)
                         if(self.personagem.passos<90):    
                             self.animação = True
@@ -315,7 +379,7 @@ class Fase_1:
                             self.animação = False
                             self.animaçãoesquerda = False
                             self.personagem.passos = 0
-                    if (evento.key == pygame.K_s) :
+                    if (evento.key == pygame.K_s)and self.podeandar(self.personagem, 'baixo', 'não'):
                         self.personagem.movimento('baixo', self.escala_movimento)
                         if(self.personagem.passos<90):    
                             self.animação = True
@@ -324,7 +388,7 @@ class Fase_1:
                             self.animação = False
                             self.animaçãobaixo = False
                             self.personagem.passos = 0
-                    if (evento.key == pygame.K_w) :
+                    if (evento.key == pygame.K_w)and self.podeandar(self.personagem, 'cima', 'não'):
                         self.personagem.movimento('cima', self.escala_movimento)
                         if(self.personagem.passos<90):    
                             self.animação = True
@@ -376,13 +440,15 @@ class Fase_1:
                             self.animaçãocima = False
                             self.personagem.passos = 0
 
-            
+
+                
                 keys = pygame.key.get_pressed()
                 self.tela.fill((18,18,18))
                 self.tela.blit(self.mapa, self.resolucao)
 
                 self.colisao_moveis()
-                self.colisao_paredes()  
+                
+                
 
                 self.personagem.desenhar_personagem(self.tela)
                 for movel in self.moveis:
@@ -390,6 +456,7 @@ class Fase_1:
                     movel.reset_movimento()
                 self.personagem.reset_movimento()
                 self.tela.blit(self.text_surf, (100, 60)) 
+                
                 if self.fase == 1:
                     if keys[pygame.K_r]:
                         self.personagem = Personagem(590,190, 120, 1)
@@ -401,8 +468,7 @@ class Fase_1:
                             self.som_acerto.play()
                             self.nao_tocou = False
                             self.mudar_fase(2)
-                 
-
+                    self.mudar_fase(3)
                 if self.fase == 2:
                     if keys[pygame.K_r]:
                         self.personagem = Personagem(525,365, 60, 0.5)
@@ -434,7 +500,7 @@ class Fase_1:
             self.clock.tick(60)
 
 
-puzzle = Fase_1()
+puzzle = Puzzle_2()
 puzzle.loop()
         
 
