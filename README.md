@@ -13,6 +13,12 @@ O projeto “Operação Crachá Perdido: Uma Aventura nos Centros da UFPE” é 
 
 O jogo é contextualizado, inicialmente, por um professor do Centro de Informática da UFPE (CIn-UFPE) que tem seu crachá subtraído por um personagem misterioso quando estava prestes a entrar em seu local de trabalho. Após isso, ele designa um calouro de Ciência da Computação para recuperar o seu crachá, que vai atrás do personagem misterioso enfrentando diversos desafios, desde uma disputa de pênaltis entre robôs do RobôCIn e braços robóticos do Voxar Labs, até uma batalha final contra o personagem misterioso.
 
+## Arquitetura do Projeto:
+- Códigos estruturados por fases, de modo que sempre haja 1 arquivo para introdução, 1 para o desafio e 1 para as cenas pós-desafio de cada fase (cada arquivo possui uma identificação em seu nome). Nota-se, ainda, códigos individuais para o mundo aberto inicial.
+- Pastas de imagens e sons individuais para cada desafio.
+- Arquivo-global do personagem-objeto.
+
+
 ## Capturas de Tela:
 ### Tela Inicial:
 ![Tela Inicial](LINK DA FOTO HOSPEDADA NO PRÓPRIO GITHUB AQUI)
@@ -64,7 +70,6 @@ O jogo é contextualizado, inicialmente, por um professor do Centro de Informát
 - **Desafio 1:** Joab Henrique e Thiago Luiz.
 - **Desafio 2:** Luiz Eduardo Lins e Paulo Henrique.
 - **Batalha Final:** Felipe Rosado.
-
 
 ### Design:
 - **Cenário de batalha:** Felipe Rosado e Matheus Henrique.
