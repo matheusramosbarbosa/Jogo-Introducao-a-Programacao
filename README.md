@@ -35,6 +35,7 @@ O jogo é contextualizado, inicialmente, por um professor do Centro de Informát
 - **PyGame:** Principal biblioteca do projeto, fornece funcionalidades para criar jogos 2D, facilitando a manipulação de gráficos, sons e eventos.
 - **PyGame CE:** Sendo uma extensão do PyGame tradicional, o PyGame Community Edition oferece uma interface amigável para controle de gráficos, som e entrada de dispositivos, tornando a criação de jogos 2D, em alguns aspectos, mais acessível e eficiente.
 - **pytmx**: Foi utilizada para carregar e renderizar mapas baseados em tiles (blocos) criados com o Tiled Map Editor.
+- **Pillow:** Foi utilizada para processamento de imagens, especificamente para abrir, manipular e salvar gifs.
 - **Random:** Sendo uma biblioteca padrão do Python, é utilizada para gerar números pseudo-aleatórios. Ela foi crucial para aplicarmos funcionamentos de aleatoriedade e imprevisibilidade, tornando o jogo mais dinâmico e desafiador.
 ### Ferramentas:
 - **PyCharm:** É uma IDE para Python, desenvolvida pela JetBrains, sendo utilizada para escrever, depurar e testar códigos.
