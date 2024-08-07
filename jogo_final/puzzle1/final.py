@@ -34,5 +34,4 @@ def exibir_final():
     todos_sprites.update()
     todos_sprites.draw(tela)
     pygame.display.update()
-    pygame.time.wait(5000)
-    dialogo2.remove(todos_sprites)
+    pygame.time.wait(1000000)

@@ -139,5 +139,3 @@ def comecar_pos_luta():
                         pygame.display.update()
 
     exibir_final()
-
-exibir_final()
