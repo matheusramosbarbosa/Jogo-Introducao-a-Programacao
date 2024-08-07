@@ -19,17 +19,27 @@ O jogo é contextualizado, inicialmente, por um professor do Centro de Informát
 
 ## Capturas de Tela:
 ### Tela Inicial:
-![Tela Inicial](LINK DA FOTO HOSPEDADA NO PRÓPRIO GITHUB AQUI)
+![Screenshot 2024-08-07 083802](https://github.com/user-attachments/assets/d933674f-64da-4dd9-992e-c9024ddfb3aa)
+
 ### Cena de Contextualização Inicial:
-![Cena de Contextualização Inicial](LINK DA FOTO HOSPEDADA NO PRÓPRIO GITHUB AQUI)
+![Screenshot 2024-08-07 083841](https://github.com/user-attachments/assets/ba5da1e6-2e07-4e10-a0f2-9717b6cb613c)
+
+### Cena do Mapa:
+![Screenshot 2024-08-07 083913](https://github.com/user-attachments/assets/04d8f86a-688a-48ae-b066-55372af59693)
+
 ### Cena do Puzzle 1:
-![Cena do Puzzle 1](LINK DA FOTO HOSPEDADA NO PRÓPRIO GITHUB AQUI)
+![Screenshot 2024-08-07 084232](https://github.com/user-attachments/assets/e4da19b9-4bf8-4afb-b97c-58cf10ec17d0)
+
 ### Cena do Puzzle 2:
-![Cena do Puzzle 2](LINK DA FOTO HOSPEDADA NO PRÓPRIO GITHUB AQUI)
+![Screenshot 2024-08-07 085327](https://github.com/user-attachments/assets/e56df160-a7bb-47bd-b8ae-99187d3c4159)
+
 ### Cena da Batalha Final:
-![Cena da Batalha Final](LINK DA FOTO HOSPEDADA NO PRÓPRIO GITHUB AQUI)
+![Screenshot 2024-08-07 085644](https://github.com/user-attachments/assets/009e9b37-d55c-4acb-80ad-e500a09ae03c)
+
 ### Cena Final:
-![Cena Final](LINK DA FOTO HOSPEDADA NO PRÓPRIO GITHUB AQUI)
+![Screenshot 2024-08-07 085844](https://github.com/user-attachments/assets/408ea1e6-6879-43f2-9257-c41797972868)
+
+
 ## Bibliotecas e Ferramentas Utilizadas:
 ### Bibliotecas:
 - **PyGame:** Principal biblioteca do projeto, fornece funcionalidades para criar jogos 2D, facilitando a manipulação de gráficos, sons e eventos.
