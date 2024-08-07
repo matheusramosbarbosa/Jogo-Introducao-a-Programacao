@@ -3,8 +3,10 @@ import sys
 
 pygame.init()
 tela = pygame.display.set_mode((1280, 720))
-pygame.display.set_caption('Em Busca do Crachá Perdido')
+pygame.display.set_caption('Operação Crachá Perdido')
 fundo = pygame.image.load('graficos/tela_inicio/imagens/inicio.png')
+icone = pygame.image.load('puzzle1/imagens-puzzle1/cenas-introducao/icone_ocp.png')
+pygame.display.set_icon(icone)
 
 class Botao():
     def __init__(self, imagem, x_pos, y_pos, largura_hitbox=None, altura_hitbox=None):
