@@ -340,4 +340,3 @@ def comecar_luta():
                 pygame.mixer.music.unload()
 
     comecar_pos_luta()
-comecar_luta()
