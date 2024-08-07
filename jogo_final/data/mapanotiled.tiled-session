@@ -1,0 +1,227 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/objetos.tsx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/CP_V1.0.4 copiar.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/CP_V1.0.4editado.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/Door3_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/Interiors_free_32x32.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/Room_Builder_free_32x32 copiar.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/Room_Builder_free_32x32.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/Tilemap32x32_down_environment.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/[Base]BaseChip_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/addwork.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/mapainfinito.tmx": {
+            "expandedObjectLayers": [
+                25,
+                24
+            ],
+            "scale": 0.75,
+            "selectedLayer": -1,
+            "viewCenter": {
+                "x": 3096.6666666666665,
+                "y": 2466.6666666666665
+            }
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/objetos.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/pokemon_tileset_from_public_tiles_32x32_by_chaoticcherrycake_dab2byf.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/spritesdeltarunephotoshop32x32compista.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/testetilesetdeltarune.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/tilesetver3 copiar.tsx": {
+            "scaleInDock": 1
+        },
+        "CP_V1.0.4 copiar.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 0.5
+        },
+        "CP_V1.0.4editado.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Downloads/pymonsters/Python-Monsters-main/data/maps/world.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 4350.5,
+                "y": 1597
+            }
+        },
+        "D:/Downloads/pymonsters/Python-Monsters-main/data/tilesets/Grass.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Downloads/pymonsters/Python-Monsters-main/data/tilesets/objects.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Downloads/pymonsters/Python-Monsters-main/data/tilesets/world.tsx": {
+            "scaleInDock": 1
+        },
+        "Door3_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "Interiors_free_32x32.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "PC Computer - Deltarune - Hometown Exterior.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 0.5
+        },
+        "Room_Builder_free_32x32 copiar.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Room_Builder_free_32x32.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilemap32x32_down_environment.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 2
+        },
+        "[Base]BaseChip_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "addwork.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 0.75
+        },
+        "ccen.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 480,
+                "y": 320.5
+            }
+        },
+        "mapainfinito.tmx": {
+            "expandedObjectLayers": [
+                24,
+                25
+            ],
+            "scale": 1.5,
+            "selectedLayer": 20,
+            "viewCenter": {
+                "x": 2574.6666666666665,
+                "y": 1839.6666666666665
+            }
+        },
+        "pixel-cyberpunk-interior.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
+        },
+        "pokemon_tileset_from_public_tiles_32x32_by_chaoticcherrycake_dab2byf.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
+        },
+        "spritesdeltarunephotoshop32x32compista.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "testetilesetdeltarune.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 2
+        },
+        "tilesetpokemon.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 0.75
+        },
+        "tilesetver3 copiar.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 0.5
+        },
+        "voxarlabs.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 480,
+                "y": 320.5
+            }
+        }
+    },
+    "last.imagePath": "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/Mapa do Jogo/objetos",
+    "map.fixedSize": true,
+    "map.height": 20,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 30,
+    "openFiles": [
+        "mapainfinito.tmx",
+        "tilesetver3 copiar.tsx",
+        "[Base]BaseChip_pipo.tsx",
+        "addwork.tsx",
+        "CP_V1.0.4 copiar.tsx",
+        "Tilemap32x32_down_environment.tsx",
+        "pokemon_tileset_from_public_tiles_32x32_by_chaoticcherrycake_dab2byf.tsx",
+        "CP_V1.0.4editado.tsx",
+        "Door3_pipo.tsx",
+        "Room_Builder_free_32x32 copiar.tsx",
+        "ccen.tmx",
+        "testetilesetdeltarune.tsx",
+        "spritesdeltarunephotoshop32x32compista.tsx",
+        "Room_Builder_free_32x32.tsx",
+        "pixel-cyberpunk-interior.tsx",
+        "Interiors_free_32x32.tsx",
+        "voxarlabs.tmx",
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/mapainfinito.tmx",
+        "C:/Users/Matheus/Desktop/Universidade/UFPE - CIn/1° Período/Introdução à Programação/jogo_final/data/objetos.tsx"
+    ],
+    "project": "mapanotiled.tiled-project",
+    "recentFiles": [
+        "mapainfinito.tmx",
+        "tilesetver3 copiar.tsx",
+        "[Base]BaseChip_pipo.tsx",
+        "addwork.tsx",
+        "CP_V1.0.4 copiar.tsx",
+        "Tilemap32x32_down_environment.tsx",
+        "pokemon_tileset_from_public_tiles_32x32_by_chaoticcherrycake_dab2byf.tsx",
+        "CP_V1.0.4editado.tsx",
+        "Door3_pipo.tsx",
+        "Room_Builder_free_32x32 copiar.tsx",
+        "ccen.tmx",
+        "testetilesetdeltarune.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 32
+    },
+    "tileset.transparentColor": "#000000",
+    "tileset.type": 1,
+    "tileset.useTransparentColor": false
+}
