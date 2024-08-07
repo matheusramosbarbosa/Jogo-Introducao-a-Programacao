@@ -76,19 +76,6 @@ class Player(Entity):
             self.moving_direction = 'frente'
             self.movimento = True
 
-    # def input(self):
-    #     keys = pygame.key.get_pressed()
-    #     input_vector = vector()
-    #     if keys[pygame.K_UP]:
-    #         input_vector.y -= 1
-    #     if keys[pygame.K_DOWN]:
-    #         input_vector.y += 1
-    #     if keys[pygame.K_LEFT]:
-    #         input_vector.x -= 1
-    #     if keys[pygame.K_RIGHT]:
-    #         input_vector.x += 1
-    #     self.direction = input_vector
-
 
     def move(self, dt):
         if self.direction.length() > 0:
