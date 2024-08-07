@@ -149,7 +149,7 @@ def exibir_resultado_final(vencedor):
 # Função para realizar a jogada da máquina:
 def jogada_maquina():
     #Coleta uma jogada aleatória da máquina:
-    num_jogada = randint(1, 3)
+    num_jogada = randint(1, 2)
 
     #Se o número da jogada for 1, a jogada será para a esquerda e assim segue:
     if num_jogada == 1:

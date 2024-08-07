@@ -402,6 +402,14 @@ class Puzzle_2:
                     pygame.quit()
                     exit()
                 if (evento.type == pygame.KEYDOWN)and(not self.animação):
+                    if (evento.key == pygame.K_ESCAPE):
+                        if self.fase == 1:
+                            self.mudar_fase(2)
+                        elif self.fase == 2:
+                            self.mudar_fase(3)
+                        else:
+                            comecar_coleta()
+                            
                     if (evento.key == pygame.K_d)and self.podeandar(self.personagem, 'direita', 'não'):
                         self.personagem.movimento('direita', self.escala_movimento)
                         if(self.personagem.passos<90):    

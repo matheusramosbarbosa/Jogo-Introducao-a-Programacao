@@ -1,6 +1,7 @@
 import pygame
 from objetos_personagem import Infos_Coletaveis
 from objetos_personagem import infos_coletaveis
+from final import exibir_final
 
 def comecar_pos_luta():
     pygame.init()
@@ -136,3 +137,7 @@ def comecar_pos_luta():
                         Personagem.desenhar(Personagem, tela, True, x, y, passos)
                         visualizar_infos_coletaveis()
                         pygame.display.update()
+
+    exibir_final()
+
+exibir_final()

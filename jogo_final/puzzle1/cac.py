@@ -153,8 +153,8 @@ def comecar_intro_batalha():
         personagem.remove(todos_sprites)
 
     tela.fill(('white'))
-    infos_coletaveis.qtd_fragmento_1 =- 1
-    infos_coletaveis.qtd_fragmento_2 =- 1
+    infos_coletaveis.qtd_fragmento_1 -= 1
+    infos_coletaveis.qtd_fragmento_2 -= 1
     visualizar_infos_coletaveis()
     pygame.display.update()
     pygame.time.wait(500)

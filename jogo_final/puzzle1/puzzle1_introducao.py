@@ -25,7 +25,7 @@ tela.blit(cena, (0, 0))
 # Define e executa a música de fundo em um loop infinito:
 pygame.mixer.music.load('puzzle1/sons-puzzle1/som-musica-fundo.mp3')
 pygame.mixer.music.play(-1)
-pygame.mixer.music.set_volume(0.8)
+pygame.mixer.music.set_volume(1)
 
 # Atualiza o display inicial do puzzle1:
 pygame.display.flip()

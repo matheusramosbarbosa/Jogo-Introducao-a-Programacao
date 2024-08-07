@@ -3,10 +3,15 @@ import sys
 
 pygame.init()
 tela = pygame.display.set_mode((1280, 720))
-pygame.display.set_caption('Operação Crachá Perdido')
-fundo = pygame.image.load('graficos/tela_inicio/imagens/inicio.png')
+pygame.display.set_caption('Operação Crachá Perdido: Uma Aventura nos Centros da UFPE')
 icone = pygame.image.load('puzzle1/imagens-puzzle1/cenas-introducao/icone_ocp.png')
 pygame.display.set_icon(icone)
+fundo = pygame.image.load('graficos/tela_inicio/imagens/inicio.png')
+
+# Define e executa a música de fundo em um loop infinito:
+pygame.mixer.music.load('puzzle1/sons-batalha/mus_introcar.mp3')
+pygame.mixer.music.play(-1)
+pygame.mixer.music.set_volume(1)
 
 class Botao():
     def __init__(self, imagem, x_pos, y_pos, largura_hitbox=None, altura_hitbox=None):

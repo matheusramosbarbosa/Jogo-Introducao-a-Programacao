@@ -15,7 +15,7 @@ def comecar_luta():
         pd = pygame.sprite.Group()
         hp_jogador_inicial = 200
         hp_jogador = hp_jogador_inicial
-        ataque_jogador = 40
+        ataque_jogador = 120
         if tentativas <= 1:
             for i in range(3):
                 class Tutorial(pygame.sprite.Sprite):

@@ -14,10 +14,18 @@ from support import *
 class Jogo:
     # Inicializa as configurações básicas do jogo
     def __init__(self):
+        pygame.mixer.init()
+        # Define e executa a música de fundo em um loop infinito:
+        pygame.mixer.music.load('puzzle1/sons-batalha/musica-main.mpeg')
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(0.8)
+
         self.houve_colisao = False
         pygame.init()
         self.janela = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-        pygame.display.set_caption('Em Busca do Crachá Perdido')
+        pygame.display.set_caption('Operação Crachá Perdido: Uma Aventura nos Centros da UFPE')
+        icone = pygame.image.load('puzzle1/imagens-puzzle1/cenas-introducao/icone_ocp.png')
+        pygame.display.set_icon(icone)
         self.relogio = pygame.time.Clock()
 
         self.gif_frames = self.carregar_gif('graficos/roubocracha/roubo.gif')
